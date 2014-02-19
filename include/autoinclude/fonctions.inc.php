@@ -367,7 +367,7 @@ function rwurl($what,$id=false,$extra=false) {
 		list($tmp) = $data;
 		$lib = $tmp['titre']['en'] ? $tmp['titre']['en'] : $tmp['titre']['fr'];
 	}
-	return $what.'-'.cleanName($lib).($extra!==false ? '-'.$extra : '').'.html';
+	return $what.'-'.Url::clean($lib).($extra!==false ? '-'.$extra : '').'.html';
 
 }
 function isIe(){

@@ -152,7 +152,7 @@ Class Data{
 	 */
 	function getDocs(){
 		if(!is_array($this->docs)){
-			$dir = $GLOBALS['CHEMIN_SITE'].'data/'.$this->w.'/'.$this->id.'/';
+			$dir = $GLOBALS['chemin_site'].'data/'.$this->w.'/'.$this->id.'/';
 			$image_orders = explode('|',@file_get_contents($dir.'images_order.txt'));
 			$docs = array();
 			foreach($image_orders as $entry){

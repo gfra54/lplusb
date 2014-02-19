@@ -55,27 +55,7 @@
 					</div>
 
 
-	                <div class="both">&nbsp;</div>
-	                <div class="both">
-	                <b>PDF</b> <!-- <a href="dld.php?d=<?php echo $w;?>&id=<?php echo $id;?>&pdf">zip</a> -->
-	                </div>
-	                <div class="margin">
-	                        <ul>
-	                        <?php 
-	                        $docs = getDocs($w,$id);
-	                        $cpt=0;
-	                        foreach($docs as $doc) {$cpt++;?>
-	                                <?php if(isPdf($doc)) {?>
-	                                        <li class="block left margin small" id="li_<?php echo $cpt;?>" file="<?php echo basename($doc);?>">
-	                                        <a href="<?php echo $doc;?>"><img src="images/pdf.gif" align="left"></a>
-	                                        <b><?php echo shortName($doc);?></b>
-	                                        <div><?php echo getTypeFichier($doc);?></div>
-	                                        <a href="javascript:delFichier(<?php echo $cpt;?>)"><img src="images/trash.gif"></a>
-	                                        </li>
-	                                <?php }?>
-	                        <?php }?>
-	                        </ul>
-	                </div>
+	         
 	                <div class="both">
 	                <b>Images</b> <!-- <a href="dld.php?d=<?php echo $w;?>&id=<?php echo $id;?>&img">zip</a> -->
 			<?php dohelp('Glisser et d&eacute;placer pour changer l\'ordre');?>
@@ -85,21 +65,21 @@
 	                <ul id="boxes">
 	                        <?php 
 	                        $order='';
-	                        foreach($docs as $doc) {$cpt++;?>
-	                                <?php if(!isPdf($doc)) {
-						$Data['main_image'] = !isset($Data['main_image']) ? $doc : $Data['main_image'];
-						$order.=basename($doc).'|';
-						?>
+	                        foreach($Data->getDocs() as $doc) {$cpt++;?>
+	                                <?php if(Image::isImage($doc)) {
+											$Data->data['main_image'] = !isset($Data->data['main_image']) ? $doc : $Data->data['main_image'];
+											$order.=basename($doc).'|';
+											?>
 	                                        <li class="block left margin small" id="li_<?php echo $cpt;?>" file="<?php echo basename($doc);?>">
 	                                        <img src="<?php doImage($doc,50,50);?>" align="left" class="img">
 	                                        <b><?php echo shortName($doc);?></b>
 	                                        <div><?php echo getTypeFichier($doc);?></div>
 	                                        <a href="javascript:delFichier(<?php echo $cpt;?>)"><img src="images/trash.gif"></a>
-	                                        <a href="<?php echo pathToUrl($doc);?>"  <?php echo popOpen(800,800,'img');?> target="image"><img src="images/eye.gif"></a>
+	                                        <a href="<?php echo Url::pathToUrl($doc);?>"  <?php echo popOpen(800,800,'img');?> target="image"><img src="images/eye.gif"></a>
 	                                        <a href="<?php echo pixlrUrl($doc);?>" <?php echo popOpen(800,600,'edit');?>><img src="images/edit.gif"></a>
 	                                        <?php if($show_main_image){?>
-						<input type="radio" name="form[main_image]" value="<?php echo $doc;?>" <?php echo $doc == $Data['main_image'] ? 'checked' : '';?>>
-							<?php }?>
+												<input type="radio" name="form[main_image]" value="<?php echo $doc;?>" <?php echo $doc == $Data['main_image'] ? 'checked' : '';?>>
+											<?php }?>
 	                                        </li>
 	                                <?php }?>
 	                        <?php }?>

@@ -26,7 +26,7 @@ initSettings();
 /**
  * Auto include
  */
-foreach (glob($GLOBALS['CHEMIN_SITE']."include/autoinclude/*.php") as $filename){
+foreach (glob($GLOBALS['chemin_site']."include/autoinclude/*.php") as $filename){
     include $filename;
 }
 
