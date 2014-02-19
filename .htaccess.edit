@@ -1,0 +1,20 @@
+RewriteEngine on
+
+RewriteBase /lplusb/
+
+ErrorDocument 404 "<br><br><br><br><br><br><center><h1>Erreur 404</h1></center>"
+
+
+#IMAGES
+
+RewriteRule   ^sitemap.xml								sitemap.php  [L,QSA]
+
+RewriteCond    %{REQUEST_FILENAME}  !-f
+RewriteRule   ^IMG/img-x([^-]*)-(.*)							img.php?i=$2&x=$1&y=max&cut=true  [L,QSA]
+
+RewriteCond    %{REQUEST_FILENAME}  !-f
+RewriteRule   ^IMG/img-y([^-]*)-(.*)							img.php?i=$2&y=$1&x=max&cut=true  [L,QSA]
+
+RewriteCond    %{REQUEST_FILENAME}  !-f
+RewriteRule   ^IMG/img-([^-]*)-([^-]*)-([^-]*)-(.*)						img.php?i=$4&x=$1&y=$2&cut=$3  [L,QSA]
+

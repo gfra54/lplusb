@@ -1,0 +1,161 @@
+                if($total_pages>1){?>
+                <div>
+				<script>
+				function doPaginer(){
+					window.open('admin.php?d=<?php echo $w;?><?php echo $s ? '&s='.$s : '';?><?php echo $inv ? '&inv' : '';?>&p='+g('paginer').value,'_self');
+				}
+				</script>
+                <a href="javascript:void()" onclick="g('paginer').selectedIndex--;doPaginer();">&laquo;</a>
+                <select id="paginer" onchange="doPaginer()"><?php for($i = 1; $i<=$total_pages;$i++) {?><option value="<?php echo $i;?>" <?php echo $p==$i ? 'selected' : '';?>><?php echo $i;?></option><?php }?></select>
+                <a href="javascript:void()" onclick="g('paginer').selectedIndex++;doPaginer()">&raquo;</a>
+				</div>
+                <?php }?>
+
+
+if(isset($_GET['create'])){
+	foreach($GLO_DESC as $k=>$v) {
+
+		$datas = getData($k);
+
+		$table = array('name'=>$k,'comment'=>$v['specs']['help']);
+
+		$champs = array('id'=>array('type'=>'INT(10)','ai'=>true));
+		foreach($v as $champ=>$infos){
+			if($champ!='specs') {
+				$tmp = array();
+				switch($infos['type']) {
+					default:
+						$tmp['type']='VARCHAR(255)';
+					break;
+					case "textarea":
+					case "smalltextarea":
+						$tmp['type']='TEXT';
+					break;
+					case "checkbox":
+						$tmp['type']='TINYINT(1)';
+					break;
+				}
+				$tmp['comment']=$infos['lib'].($infos['help']?': '.$infos['help']:'');
+				$champs[$champ]=$tmp;
+			} else {
+				if(!empty($infos['docs'])) {
+					$champs['main_image']=array('type'=>'VARCHAR(255)','comment'=>'Image principale associée');
+				}
+			}
+		}
+
+		$GLOBALS['bdd']->Create($table,$champs,true);
+
+		if(is_array($datas) && count($datas)) {foreach($datas as $a=>$b) {
+			insertData($k, $b);
+		}}
+	}
+
+	redir('admin.php');
+}
+checkLogin();
+
+
+$p=isset($_GET['p']) ? $_GET['p'] : 1;
+$parpage = 40;
+$debut = ($p-1)*$parpage;
+
+
+if(isset($_GET['vidercache'])) {
+	viderCache();
+	htaccessRebuild();
+	redir('back');
+}
+
+$s = isset($_GET['s']) ? $_GET['s'] : false;
+$inv = isset($_GET['inv']);
+
+
+if(isset($_POST['del_list'])){
+	foreach($_POST['del_list'] as $k=>$v) {
+		deleteData($w,$v);	
+	}
+    redir('?d='.$w);
+}
+
+if(isset($_GET['delall'])){
+	$data_sort = getSortData($GLO_DATA[$w]);
+	foreach($data_sort as $item) {
+		deleteData($w,$item['id']);	
+	}
+	redir('?d='.$w);
+}
+
+
+if(isset($_GET['del'])){
+	deleteData($w,$id);	
+        redir('?d='.$w);
+}
+
+if(isset($_POST['form'])) {
+
+        $form = $_POST['form'];
+        		// $object = new Data($_POST['w'],$form['id'],$form)
+
+        mpre($_POST);
+        $id = $form['id'];
+        $lang = $_POST['lang'];
+        $data = newEmpty($w);
+        foreach($data as $k=>$v) {
+			$v = $form[$k];
+			if(isset($lang[$k])) {
+					$tmp_lang = getTabLang();
+
+					foreach($tmp_lang as $a=>$b) {
+							if(isset($lang[$k][$a])) {
+									$tmp_lang[$a]=$lang[$k][$a];
+							}
+					}
+
+					$v = $tmp_lang;
+			}
+			if($k == 'date') {
+					$v = @mktime($v['H'],$v['i'],0,$v['m'],$v['d'],$v['Y']);
+			}
+	        if(is_array($v)) {
+				if(isset($v['links'])) {
+					list($w,$ids) = each($v['links']);
+					$v = createLinks($w,$id,$w,$ids);
+				} else {
+//			        $v = array_map('stripslashes',$v);
+				}
+		    }
+		    
+	        $data[$k] = $v;
+//	        $data[$k] = is_array($v) ? $v : stripslashes($v);
+        }
+		if(getSpec($w,'docs')) {
+			if(!empty($form['main_image'])){
+				$data['main_image']=$form['main_image'];
+			} else {
+				$data['main_image']=getFirstImage($w,$id);
+			}
+		}
+        if($id == 'new') {
+                $id = insertData($w,$data);
+        } else {
+                updateData($w,$id,$data);
+        }
+
+
+		initDir($w,$id);
+        $dir = 'data/'.$w.'/'.$id.'/';
+        if($form['files_to_delete']) {
+                $tab_delete = explode('|',$form['files_to_delete']);
+                foreach($tab_delete as $file) {
+                        if(!empty($file)) {
+                                unlink($dir.$file);
+				
+                                $form['images_order'] = str_replace($file.'|','',$form['images_order']);
+                        }
+                }
+        }
+        file_put_contents($dir.'images_order.txt',$form['images_order']);
+
+        redir('?d='.$w.'&id='.$id);
+}

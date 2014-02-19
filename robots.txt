@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /js
+Disallow: /mobile
+Disallow: /include
+Disallow: /old
+Disallow: /css
+Disallow: /data
+Disallow: /cedricragot
+
+
+

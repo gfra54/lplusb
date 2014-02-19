@@ -1,0 +1,110 @@
+body {
+	background-color:#f0f0f0;
+	color:#444444;
+	color:#231f20;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:0.7em;
+	letter-spacing:0.15em;
+}
+
+A {
+	color:#444444;
+	color:#231f20;
+	text-decoration:none;
+}
+A:hover {
+	text-decoration:underline;
+}
+
+#wrapper {
+	width:1255px;
+	margin:0 auto;
+	margin-top:25px;
+}
+#header {
+	height:100px;
+}
+#logo_baseline, #logo, #presentation {
+	display:block;
+	float:left;
+}
+.ligne {
+	margin-left:30%;
+	width:861px;
+	margin-bottom:30px;
+	border-top:1px dotted #444444;
+}
+
+#presentation P{
+	padding:0;
+	margin:0;
+}
+#presentation {
+	margin-left:30px;
+}
+
+#nav {
+	float:left;
+	width:25%;
+	padding-right:5%;
+}
+
+#nav A{
+	display:block;
+	text-transform:uppercase;
+	line-height:1.8em;
+}
+#nav A.main{
+	font-weight:bolder;
+}
+
+#apropos {
+	margin-top:70px;
+}
+#apropos A{
+	
+	font-weight:bolder;
+}
+#content {
+	float:left;
+	width:70%;
+	margin-left:-17px;
+}
+
+HR,.clear:after,.z:after{content:".";display:block !important;height:0;clear:both;visibility:hidden;margin:0;padding:0;border:none}HR,.clear,.z{display:inline-block}.hidden{visibility:hidden}* html .clear, * html HR, * html
+.z{height:1%}.clear,.z{display:block}
+
+#content .wrap, .cell {
+	float:left;
+	overflow:hidden;
+	margin-left:17px;
+	margin-bottom:17px;
+}
+
+.cell {
+	width:202px;
+	height:138px;
+	background:orange;
+}
+
+.cell IMG{
+	width:100%;
+	min-height:100%;
+	display:block;
+}
+#content .wrap{
+	width:438px;
+	height:283px;
+}
+ #content .big {
+	width:421px;
+	height:283px;
+	margin-left:0;
+}
+
+
+
+#content .wrap .cell {
+	margin-left:0;
+	margin-right:17px;
+}

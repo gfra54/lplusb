@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr-FR">
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+	<meta charset=windows-1252>
+	<title>L+B</title>
+	<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+
+</head>
+<body>
+
+<div id="wrapper">
+	<div id="header">
+<!-- 		<a id="logo" href="/"><img src="images/logo.png"></a>
+		<div id="presentation">
+			<p>
+				<strong>Charlotte Lamoglia</strong>
+			</p>
+			<p>
+				<strong>Laurent Burte</strong>
+			</p>
+			<p>
+				Direction artistique
+			<p>
+			<p>
+				Typographie
+			<p>
+			<p>
+				Illustration
+			<p>
+		</div> -->
+		<a href="/" id="logo_baseline"><img src="images/logo_baseline.png"></a>
+		<hr>
+	</div>
+	<div class="ligne"></div>
+	<div id="nav">
+		<a class="main" href="">Réalisation</a>
+		<a class="main" href="">Catégories</a>
+		<a class="main" href="">Clients</a>
+		<a href="">Communauté d'agglomération de l'aéroport du b ourget</a>
+		<a href="">catherine andré</a>
+		<a href="">tnb</a>
+		<a href="">hermes</a>
+		<a href="">catherine andré</a>
+		<a href="">tnb</a>
+		<a href="">hermes</a>
+		<a href="">catherine andré</a>
+		<a href="">tnb</a>
+		<a href="">hermes</a>
+		<a href="">catherine andré</a>
+		<a href="">tnb</a>
+		<a href="">hermes</a>
+		
+		<div id="apropos">
+			<a href="">à propos</a>
+			<a href="">savoir faire</a>
+			<a href="">contact</a>
+		</div>
+	</div>
+
+	<div id="content">
+		
+		<script>
+		for(i=1;i<21;i++) {
+			if(i==9) {
+				document.write('<hr><div class="wrap">');
+			} else 
+			if(i==13) {
+				document.write('</div>');
+			}
+			document.write('<a href="" class="'+(i==13 ? 'big' : '')+' cell"><img src="photos/'+i+'.jpg"></a>');
+			if(i==13) {
+				document.write('<hr>');
+			}
+		}
+		</script>
+	</div>
+</div>
+</body>
+</html>
