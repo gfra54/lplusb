@@ -7,8 +7,8 @@ Class Data{
 	var $id;
 	var $w;
 	var $data;
-	var $list;
 	var $docs;
+
 	/**
 	 * Construtor
 	 * @param [type]  $w data type (name of the table in the database)
@@ -17,22 +17,25 @@ Class Data{
 	 */
 	function __construct($w,$id=false,$data=false) {
 		$this->w=$w;
-		if($id && !$data) {
+		if($id && $data===false) {
 			if($id == 'new'){
-				$data = array();
-				foreach($this->fields() as $k=>$v) {
-					if(isset($v['data'])) {
-						$data[$k]=isset($v['default']) ? $v['default'] : '';
-					}
-				}
-
+				$data = $this->proto();
 			} else {
 				$data=$GLOBALS['bdd']->Get($w,$id);
 			}
+		} else if($data=='empty'){
+			$data = $this->proto();
 		}
 		$this->id=$id;
 		$this->data=$data;
 		$this->docs=false;
+	}
+	function proto(){
+		$data = array();
+		foreach($this->fields() as $k=>$v) {
+			$data[$k]=isset($v['default']) ? $v['default'] : '';
+		}
+		return $data;
 	}
 	/**
 	 * link between two tables
@@ -49,7 +52,8 @@ Class Data{
 				'w2'=>$w2
 		));
 		foreach($ids as $k=>$v) {
-			insertData('links',array(
+			$Link = new Data('link');
+			$Link->insertData(array(
 				'w1'=>$this->w,
 				'id1'=>$this->id,
 				'w2'=>$w2,
@@ -88,7 +92,6 @@ Class Data{
 			$tmp['where'][$params]=$other;
 			$params = $tmp;
 		}
-		echo "test";
 		$params['orderby'] = !empty($params['orderby']) ? $params['orderby'] : $this->getSpec('order');
 		return $this->populateData($GLOBALS['bdd']->Select($this->w,!empty($params['where']) ? $params['where']: false,$params['orderby'],(!empty($params['start']) ? $params['start'].',' : '').(!empty($params['limit']) ? $params['limit']:'')));
 	}
@@ -162,12 +165,8 @@ Class Data{
 			}
 			if($d = @dir($dir)) {
 				while (false !== ($entry = $d->read())) {
-					if($img===false || !isPdf($entry)) {
-						if(fileIsOk($entry)) {
-							if(!isset($docs[$entry])) {
-							   $docs[$entry] = $dir.($entry);
-							  }
-						}
+					if(Image::isImage($entry)) {
+						$docs[$entry] = new File($dir.$entry);
 					}
 				}
 				$d->close();
@@ -190,15 +189,17 @@ Class Data{
 		}
 		return $url;
 	}
+	function isField($field){
+		if($field !='specs' && ($field == 'id' || isset($GLOBALS['DESC'][$this->w][$field]))) {
+			return true;
+		} else return false;
+	}
 	/**
 	 * Get description for the current item type
 	 * @param  $field field we want
 	 * @return ?
 	 */
 	function getSpec($field) {
-		if(isset($GLOBALS['DESC'][$this->w][$field])) {
-			return $GLOBALS['DESC'][$this->w][$field];
-		} else 
 		if(isset($GLOBALS['DESC'][$this->w]['specs'][$field])) {
 			return $GLOBALS['DESC'][$this->w]['specs'][$field];
 		} else 	return false;
@@ -219,12 +220,35 @@ Class Data{
 	}
 
 	function deleteData() {
-		File::rmdir('data/'.$this->w.'/'.$this->id);
+		$File = new File('data/'.$this->w.'/'.$this->id);
+		$File->rmdir();
 		return $GLOBALS['bdd']->Delete($this->w,array('id'=>$this->id));
 	}
 
 	function updateData($data=false) {
 		return $GLOBALS['bdd']->Update($this->w,$data ? $data : $this->data,array('id'=>$this->id));
+	}
+
+	public static function viderCache(){
+		$File = new File();
+		$File->rmdir($GLOBALS['chemin_site'].'CACHE');
+		$File->rmdir($GLOBALS['chemin_site'].'IMG');
+	}
+	public static function htaccessRebuild(){
+		$htaccess = file_get_contents('.htaccess.edit');
+		$Pages = new Data('pages');
+		foreach($Pages->get() as $k=>$v) {
+			$htaccess.="\n".'RewriteRule   ^'.$v['uri'].'$								page.php?id='.$v['id'].'  [L,QSA]';
+		}
+		return file_put_contents($GLOBALS['chemin_site'].'.htaccess',$htaccess);
+	}
+	function save($data=false){
+        if($this->id == 'new' || empty($this->id)) {
+            $this->id = $this->insertData($data);
+        } else {
+            $this->updateData($data);
+        }
+        return $this->id;
 	}
 
 }

@@ -1,4 +1,34 @@
 <?php 
+
+$tab_toolbar = array(
+	'Titre'=>'h2',	
+	'Paragraphe'=>'p',	
+	'Gras'=>'b',	
+	'Italique'=>'i',	
+	'Souligné'=>'u',	
+	'Grand'=>'big',	
+	'Petit'=>'small',
+	'Image'=>array('question'=>'URL du fichier image','balises'=>array('img src="0val0"',false)),	
+	'Lien interne'=>array('question'=>'URL du lien','balises'=>array('a href="0val0"','a')),	
+	'Lien externe'=>array('question'=>'URL du lien','balises'=>array('a target="_blank" href="0val0"','a')),	
+);
+function showToolBar($id_cible) {
+	global $tab_toolbar;
+	$html='<div class="toolbar">';
+	foreach($tab_toolbar as $lib=>$c){
+		if(is_array($c)) {
+			$html.='<a href="javascript:alterTextSpecial(\''.$id_cible.'\',\''.htmlspecialchars($c['question']).'\',\''.htmlspecialchars($c['balises'][0]).'\',\''.htmlspecialchars($c['balises'][1]).'\')">'.$lib.'</a> &nbsp; ';
+		} else {
+			$html.='<a href="javascript:alterText(\''.$id_cible.'\',\''.$c.'\')">'.$lib.'</a> &nbsp; ';
+		}
+	}
+	$html.='<a href="javascript:showPreview(\''.$id_cible.'\')">Aper&ccedil;u</a> &nbsp; ';
+	$html.='<a href="javascript:growTextarea(\''.$id_cible.'\')">Agrandir</a>';
+	$html.='</div><div class="preview" id="preview_'.$id_cible.'"></div>';
+	return $html;
+}
+
+
 function showHeaderAdmin($titre=false,$extra=false) {
 	$headerSent=true;
 ?>
@@ -8,17 +38,25 @@ function showHeaderAdmin($titre=false,$extra=false) {
 <title><?php echo $titre ? $titre : 'Admin';?></title>
 <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/admin.css"/>
-<script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/toolbar.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
+<script type="text/javascript" src="js/toolbar.js"></script>
 <script type="text/javascript" src="uploadify/jquery.uploadify.min.js"></script>
 <link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" />
-<!--
-<script type="text/javascript" src="lightbox/js/prototype.js"></script>
-<script type="text/javascript" src="lightbox/js/scriptaculous.js?load=effects,builder"></script>
-<script type="text/javascript" src="lightbox/js/lightbox.js"></script>
-<link rel="stylesheet" href="lightbox/css/lightbox.css" type="text/css" media="screen" />
--->
+
+<script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.6.pack.js"></script>
+<link rel="stylesheet" href="fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+<script type="text/javascript" src="fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<link rel="stylesheet" href="fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+<script type="text/javascript" src="fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+
 <script language="JavaScript" type="text/javascript" src="js/tool-man/core.js"></script>
 <script language="JavaScript" type="text/javascript" src="js/tool-man/events.js"></script>
 <script language="JavaScript" type="text/javascript" src="js/tool-man/css.js"></script>
@@ -28,6 +66,8 @@ function showHeaderAdmin($titre=false,$extra=false) {
 <script language="JavaScript" type="text/javascript" src="js/tool-man/dragsort.js"></script>
 <script language="JavaScript" type="text/javascript" src="js/tool-man/cookies.js"></script>
 <script language="JavaScript" type="text/javascript" src="js/dodrag.js"></script>
+
+
 </head>
 <body <?php echo $extra ? $extra : false;?>>        
 <div id="float_logo"></div>
@@ -96,10 +136,11 @@ function getInputForm($type,$name,$value=false,$id=false,$class=false,$do_lang=f
 			}
 		} else {
 			$w=$datas;
-			$tmp = getData($w);
+			$TmpData = new Data($w);
+			$tmp = $TmpData->get();
 			$datas=array();
 			foreach($tmp as $k=>$v) {
-				$datas[$v['id']]=$v[getSpec($w,'lib_field')];
+				$datas[$k]=$v->data[$TmpData->getSpec('lib_field')];
 			}
 		}
 	}

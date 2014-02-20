@@ -20,11 +20,6 @@ $i = isset ($_GET['i']) ? $_GET['i']: false;
 $tmp_youtube=false;
 // Gestion d'images
 if ($i) {
-		if (!is_dir("CACHE/IMG/")){
-			@mkdir("CACHE");
-			@mkdir("CACHE/IMG/");
-		}
-
 		$source = Url::fromUrl($i);
 
 		$largeur_max = $_GET['x'];
@@ -35,8 +30,17 @@ if ($i) {
 			exit;
 
 		if(strstr($_SERVER['REQUEST_URI'],'/img-')!==false) {
+			if (!is_dir($GLOBALS['chemin_site']."IMG/")){
+				@mkdir($GLOBALS['chemin_site']."IMG/",0777);
+			}
+
 			$cle = 'IMG/'.basename($_SERVER['REQUEST_URI']);
 		} else {
+			if (!is_dir("CACHE/IMG/")){
+				@mkdir("CACHE",0777);
+				@mkdir("CACHE/IMG/",0777);
+			}
+
 			$cle = "CACHE/IMG/" . @filemtime($source) . md5(@filesize($source) . $source . $largeur_max . $hauteur_max . $cut . $gif. $alpha. $noborder);
 		}
 

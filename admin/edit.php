@@ -30,11 +30,11 @@
 	                <input type="submit" class="bouton" name="open_upload" value="Cliquez ici pour uploader des documents">	
 		</div>
 		<?php } else {?>
-			<?php if($show_main_image){?>
+			<?php if(isset($Data->data['main_image'])){?>
 		        <div class="admin_c1">Vignette principale</div>
 		        <div class="admin_c2">
-				<?php if(isset($Data['main_image']) && file_exists($Data['main_image'])){?>	
-					<img src="<?php doImage($Data['main_image'],100,100);?>">
+				<?php if(file_exists($Data->data['main_image'])){?>	
+					<img src="<?php echo Url::image($Data->data['main_image'],100,100);?>">
 				<?php }?>
 				</div>
 			<?php }?>
@@ -65,21 +65,20 @@
 	                <ul id="boxes">
 	                        <?php 
 	                        $order='';
-	                        foreach($Data->getDocs() as $doc) {$cpt++;?>
-	                                <?php if(Image::isImage($doc)) {
-											$Data->data['main_image'] = !isset($Data->data['main_image']) ? $doc : $Data->data['main_image'];
-											$order.=basename($doc).'|';
+	                        $cpt=0;
+	                        foreach($Data->getDocs() as $idx=>$Doc) {$cpt++;?>
+	                                <?php if($Doc->is('image')) {
+											$Data->data['main_image'] = !isset($Data->data['main_image']) ? $Doc->path() : $Data->data['main_image'];
+											$order.=$Doc->basename().'|';
 											?>
-	                                        <li class="block left margin small" id="li_<?php echo $cpt;?>" file="<?php echo basename($doc);?>">
-	                                        <img src="<?php doImage($doc,50,50);?>" align="left" class="img">
-	                                        <b><?php echo shortName($doc);?></b>
-	                                        <div><?php echo getTypeFichier($doc);?></div>
+	                                        <li class="block left margin small" id="li_<?php echo $cpt;?>" file="<?php echo $Doc->basename();?>">
+	                                        <img src="<?php echo Url::image($Doc->path(),150,150);?>" align="left" class="img">
+	                                        <b><?php echo $Doc->shortName();?></b>
+	                                        <div><?php echo $Doc->type();?></div>
 	                                        <a href="javascript:delFichier(<?php echo $cpt;?>)"><img src="images/trash.gif"></a>
-	                                        <a href="<?php echo Url::pathToUrl($doc);?>"  <?php echo popOpen(800,800,'img');?> target="image"><img src="images/eye.gif"></a>
-	                                        <a href="<?php echo pixlrUrl($doc);?>" <?php echo popOpen(800,600,'edit');?>><img src="images/edit.gif"></a>
-	                                        <?php if($show_main_image){?>
-												<input type="radio" name="form[main_image]" value="<?php echo $doc;?>" <?php echo $doc == $Data['main_image'] ? 'checked' : '';?>>
-											<?php }?>
+	                                        <a href="<?php echo $Doc->url();?>" class="fancybox"><img src="images/eye.gif"></a>
+	                                        <a href="<?php echo Image::pixlrUrl($Doc->path());?>" <?php echo popOpen(800,600,'edit');?>><img src="images/edit.gif"></a>
+												<input type="radio" name="form[main_image]" value="<?php echo $Doc->path();?>" <?php echo $Doc->path() == $Data->data['main_image'] ? 'checked' : '';?>>
 	                                        </li>
 	                                <?php }?>
 	                        <?php }?>

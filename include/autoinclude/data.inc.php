@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 function createLinks($w1,$id1,$w2,$ids){
 	$ids = is_array($ids) ? $ids : array($ids);
 	$out='';
@@ -19,22 +19,22 @@ function createLinks($w1,$id1,$w2,$ids){
 		$out.=$v;
 	}
 	return $out;
-}
-function getData($what,$params=false,$orderby=false) {
+}*/
+/*function getData($what,$params=false,$orderby=false) {
 	return $GLOBALS['bdd']->Select($what,$params,$orderby);
 }
 
 function getDataLimit($what,$params=false,$debut=false,$parpage=false,$orderby=false) {
 	return $GLOBALS['bdd']->Select($what,$params,$orderby,($debut ? $debut.',' : '').($parpage?$parpage:''));
-}
-function getUserByLogin($login) {
+}*/
+/*function getUserByLogin($login) {
 
 	if(list(,$ret) = each($GLOBALS['bdd']->Select('users',array('login'=>$login)))) {
 		return $ret;	
 	}
 	return false;
-}
-
+}*/
+/*
 function getMainImage($what,$data,$blank=true){
 	if(isset($data['main_image'])){
 		return str_replace($GLOBALS['CHEMIN_SITE'],'',$data['main_image']);
@@ -47,9 +47,9 @@ function getMainImage($what,$data,$blank=true){
 		}
 	}
 	return $blank  ? 'images/blank.png' : false;
-}
+}*/
 
-function doLibList($nom_data,$data) {
+/*function doLibList($nom_data,$data) {
 	global $GLO_DESC, $GLO_DEFAULT_LANG;
 	$tpl_lib = $GLO_DESC[$nom_data]['specs']['lib_list'];
 	$GLO_DESC[$nom_data]['id']=true;
@@ -70,20 +70,12 @@ function doLibList($nom_data,$data) {
 		}
 	}
 	return $tpl_lib;
-}
-function viderCache(){
-	$d = dir('.');
-	while (false !== ($entry = $d->read())) {
-		if(substr($entry,0,4) == 'img-') {
-			unlink($entry);
-		}
-	}
-	File::rmdir($GLOBALS['chemin_site'].'CACHE');
-	$d->close();
-}
+}*/
+/*
 function toUrl($f){
 	return str_replace('/','_',$f);
 }
+
 function shortName($f) {
 	$f = basename($f);
 	if(strlen($f)>15) {
@@ -128,20 +120,15 @@ function isPdf($f){
 		return true;
 	else
 		return false;
-}
-function fileIsOk($f) {
-	if(strstr($f,'jpg')!==false || strstr($f,'JPG')!==false || strstr($f,'png')!==false || strstr($f,'pdf')!==false)
-		return true;
-	else
-		return false;
-}
+}*/
+
 function initDir($what,$id) {
 	@mkdir('data');
 	@mkdir('data/'.$what);
 	@mkdir('data/'.$what.'/'.$id);
 }
 
-
+/*
 function insertData($what,$data) {
 	if($GLOBALS['bdd']->Insert($data,$what)) {
 		return $GLOBALS['bdd']->LastInsertID();
@@ -164,8 +151,8 @@ function writeData() {
 	file_put_contents($PATH_SITE.'include/data.gen',serialize($GLO_DATA));
 }
 
-
-
+*/
+/*
 function newEmpty($what) {
 	global $GLO_DESC; 
 	$ret = array();
@@ -183,4 +170,4 @@ function newEmpty($what) {
 		}
 	}
 	return $ret;
-}
+}*/

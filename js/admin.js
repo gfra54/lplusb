@@ -1,3 +1,7 @@
+$(document).ready(function() {
+	$(".fancybox").fancybox();
+});
+
 function initUploadify(_w,_id) {
     $('#file_upload').uploadify({
         'swf'      : 'uploadify/uploadify.swf',
@@ -9,6 +13,7 @@ function initUploadify(_w,_id) {
 		},
 	});
 }
+
 function sel(_w) {
 	_i=0;
 	while(_obj = g('check_'+_i)) {
@@ -20,6 +25,7 @@ function sel(_w) {
 	function setViewed(_id){
 	g('lien_press_'+_id).style.color='#0031FF';
 }
+/*
 _prec_menu_annee=false;
 function filtreAnnee(annee) {
 	if(_prec_menu_annee){
@@ -196,7 +202,7 @@ function voirRub(id) {
 function loginWindow(){
 	g('loginlink').innerHTML=g('login_form').innerHTML;
 }
-
+*/
 function growTextarea(_id){
 	t='500px';
 	obj=g(_id);
@@ -249,30 +255,6 @@ function switchAllSelect(_select) {
 		_tmp_select.setAttribute('onchange',_tmp_onchange);
 		i++;	
 	}
-}
-
-
-function switchLangueInput(_id,_lang) {
-	if(_obj = g(_id)) {
-		_tmp_lang = _obj.getAttribute('lang');
-		if(!_tmp_lang) {
-			_tmp_lang=GLO_DEFAULT_LANG;
-		}
-		saveCaseLang(_obj);
-		_obj.value = g(_obj.name+'_'+_lang).value;
-		_obj.setAttribute('lang',_lang);
-		_obj.style.backgroundImage='url(images/'+_lang+'.png)';
-		showPreview(_id,true);
-	}
-}
-function saveCaseLang(_obj) {
-		_tmp_lang = _obj.getAttribute('lang');
-		if(!_tmp_lang) {
-			_tmp_lang=GLO_DEFAULT_LANG;
-		}
-		if(g(_obj.name+'_'+_tmp_lang)){
-			g(_obj.name+'_'+_tmp_lang).value = _obj.value;
-		}
 }
 
 function g(id) {

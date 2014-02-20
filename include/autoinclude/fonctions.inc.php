@@ -16,14 +16,6 @@ function closed() {
 }
 
 
-function htaccessRebuild(){
-	$htaccess = file_get_contents('.htaccess.edit');
-	$pages = getData('pages');
-	foreach($pages as $k=>$v) {
-		$htaccess.="\n".'RewriteRule   ^'.$v['uri'].'$								page.php?id='.$v['id'].'  [L,QSA]';
-	}
-	return file_put_contents($GLOBALS['chemin_site'].'.htaccess',$htaccess);
-}
 function teleport($url){
         header("HTTP/1.1 301 Moved Permanently");
         header("Location: ".$url);
@@ -414,7 +406,7 @@ function pixlrUrl($img) {
 
 	return $url;
 }
-
+/*
 function doImage($img,$w=false,$h=false,$cut='true',$return=false) {
 	global $GLO_SITE, $PATH_SITE;
 //	$img = str_replace('/cedricragot/','/',$img);
@@ -433,37 +425,11 @@ function doImage($img,$w=false,$h=false,$cut='true',$return=false) {
 		return $ret;
 	else 
 		echo $ret;
-}
+}*/
 function popOpen($w,$h,$name='window') {
 	return 'onclick="window.open(this.href,\''.$name.'\',\'width='.$w.',height='.$h.',scrollbars=yes,menubar=no,resizable=no\');return false;"';
 }
-$tab_toolbar = array(
-	'Titre'=>'h2',	
-	'Paragraphe'=>'p',	
-	'Gras'=>'b',	
-	'Italique'=>'i',	
-	'Souligné'=>'u',	
-	'Grand'=>'big',	
-	'Petit'=>'small',
-	'Image'=>array('question'=>'URL du fichier image','balises'=>array('img src="0val0"',false)),	
-	'Lien interne'=>array('question'=>'URL du lien','balises'=>array('a href="0val0"','a')),	
-	'Lien externe'=>array('question'=>'URL du lien','balises'=>array('a target="_blank" href="0val0"','a')),	
-);
-function showToolBar($id_cible) {
-	global $tab_toolbar;
-	$html='<div class="toolbar">';
-	foreach($tab_toolbar as $lib=>$c){
-		if(is_array($c)) {
-			$html.='<a href="javascript:alterTextSpecial(\''.$id_cible.'\',\''.htmlspecialchars($c['question']).'\',\''.htmlspecialchars($c['balises'][0]).'\',\''.htmlspecialchars($c['balises'][1]).'\')">'.$lib.'</a> &nbsp; ';
-		} else {
-			$html.='<a href="javascript:alterText(\''.$id_cible.'\',\''.$c.'\')">'.$lib.'</a> &nbsp; ';
-		}
-	}
-	$html.='<a href="javascript:showPreview(\''.$id_cible.'\')">Aper&ccedil;u</a> &nbsp; ';
-	$html.='<a href="javascript:growTextarea(\''.$id_cible.'\')">Agrandir</a>';
-	$html.='</div><div class="preview" id="preview_'.$id_cible.'"></div>';
-	return $html;
-}
+
 $cpt_help=0;
 function dohelp($m){
 	global $cpt_help;

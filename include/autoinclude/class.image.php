@@ -65,11 +65,32 @@ class Image
         imagedestroy($this->resourceImage);
     }
     
+    public static function pixlrUrl($img){
+
+        $img = str_replace($GLOBALS['chemin_site'],'',$img);
+        $params = array(
+            'loc'=>'fr',
+            'referrer'=>$GLOBALS['url_site'],
+            'exit'=>$GLOBALS['url_site'].'pixlr.php?action=close',
+            'title'=>base64_encode($img),       
+            'method'=>'GET',
+            'target'=>$GLOBALS['url_site'].'pixlr.php',
+            'crendentials'=>'true',
+        );
+        $_params='';
+        foreach($params as $k=>$v){
+            $_params.='&'.$k.'='.urlencode($v);
+        }
+        $url = 'http://pixlr.com/express/?image='.$GLOBALS['url_site'].$img.$_params;
+
+        return $url;        
+    }
+
     public static function isImage($filename){
         $extensions = array('jpg','jpeg','png','gif');
-        $ext = File::ext($filename);
-        if(in_array($ext, $extensions)!==false){
-            return $ext;
+        $File = new File($filename);
+        if(in_array($File->ext(), $extensions)!==false){
+            return $File->ext();
         } else {
             return false;
         }

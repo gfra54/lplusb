@@ -106,12 +106,12 @@ $GLOBALS['DESC']['projects'] = array(
 		'default'=>'0',
 		'help'=>"Si cette case n'est pas coch&eacute;e, le projet et son contenu n'est pas visible sur le site"
 	),
-	'date' => array(
+/*	'date' => array(
 		'lib'=>'Date de publication',
 		'type'=>'date',
 		'default'=>time(),
 		'help'=>"Permet de trier les projets sur la date"
-		),
+		),*/
 	'titre' => array(
 		'lib'=>'Titre du projet',
 		'type'=>'text',

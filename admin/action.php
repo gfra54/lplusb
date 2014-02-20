@@ -2,9 +2,30 @@
 $w = !empty($_GET['w']) && isset($GLOBALS['DESC'][$_GET['w']]) ? $_GET['w'] : false;
 $id = !empty($_GET['id']) ? $_GET['id'] : false;
 
+/*
+Effacer un item
+ */
+if(isset($_GET['del'])){
+	$Data = new Data($w,$id);
+	$Data->deleteData();	
+    redir('admin.php?w='.$w);
+}
+
+/*
+Vider le cache des images et reconstruire le fichier htaccess
+ */
+if(isset($_GET['vidercache'])) {
+	Data::viderCache();
+	Data::htaccessRebuild();
+	redir('back');
+}
+
+/*
+Formulaire principal (enregistrement des données)
+ */
 if(isset($_POST['form'])) {
         $form = $_POST['form'];
-        $Object = new Data($w,$form['id'],$form);
+        $Object = new Data($w,$form['id'],'empty');
         $id = $form['id'];
         foreach($Object->data as $k=>$v) {
 			$v = $form[$k];
@@ -26,12 +47,7 @@ if(isset($_POST['form'])) {
 				$Object->data['main_image']=$Object->getLogo();
 			}
 		}
-        if($id == 'new') {
-            $id = $Object->insertData();
-        } else {
-            $Object->updateData($data);
-        }
-
+		$id = $Object->save();
 
 		initDir($w,$id);
         $dir = 'data/'.$w.'/'.$id.'/';
@@ -46,6 +62,9 @@ if(isset($_POST['form'])) {
                 }
         }
         file_put_contents($dir.'images_order.txt',$form['images_order']);
+
+		// Data::viderCache();
+		// Data::htaccessRebuild();
 
         redir('admin.php?w='.$w.'&id='.$id);
 }

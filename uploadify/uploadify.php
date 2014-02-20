@@ -12,20 +12,13 @@ if($id && $what) {
 
 
 	if (!empty($_FILES)) {
-		$tempFile = $_FILES['Filedata']['tmp_name'];
-		if($ext = File::ext($_FILES['Filedata']['name'])) {
-			$tmpname = str_replace('.'.$ext,'',$_FILES['Filedata']['name']);
-			$targetFile = $targetFolder.Url::clean($tmpname).'.'.$ext;
-
-			// Validate the file type
-			$fileTypes = array('jpg','jpeg','gif','png'); // File extensions
-			$fileParts = pathinfo($_FILES['Filedata']['name']);
-			if (in_array($fileParts['extension'],$fileTypes)) {
-				move_uploaded_file($tempFile,$targetFile);
-				echo '1';
-			} else {
-				echo 'Invalid file type.';
-			}
+		$File = new File($_FILES['Filedata']['name']);
+		if($File->is('image')) {
+			$targetFile = $targetFolder.$File->clean();
+			move_uploaded_file($_FILES['Filedata']['tmp_name'],$targetFile);
+			echo '1';
+		} else {
+			echo 'Invalid file type.';
 		}
 	}
 }
