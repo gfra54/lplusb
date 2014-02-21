@@ -1,10 +1,11 @@
 var _prec_wrap=false;
 $(window).load(function() {
-		$('.cell IMG').each(function(){
-			if($(this).width()>=$(this).height()){
+		setTimeout(function(){$('.cell IMG').each(function(){
+			if($(this).width()>$(this).height()){
 				$(this).css({'height':'100%','width':'auto'});
 			}
 		})
+		},1500);
 		$('#nav').fadeIn('slow',function(){
 			$('#content').fadeIn('slow',function(){
 					$('#nav .wrap').each(function(){
