@@ -9,7 +9,7 @@ showHeader($Project->data['titre'],false,false,true);?>
 	<li id="zone">
 		<ul id="sliding">
 		<?php $cpt=0;foreach($Project->getDocs() as $id_doc => $doc) {$cpt++;
-			?><li class="slide"><img src="<?php echo Url::image($doc,false,500);?>"></li><?php
+			?><li class="slide"><img src="<?php echo Url::image($doc,false,800);?>"></li><?php
 		}?>
 		</ul>
 	</li>
@@ -25,7 +25,7 @@ showHeader($Project->data['titre'],false,false,true);?>
 		<?php } else if($cpt==13) {?>
 			</div>
 		<?php }?>
-		<a href="" class="<?php echo $cpt==13 ? 'big' : '';?> cell"><img src="<?php echo Url::image($doc,300);?>"></a>
+		<a href="#i<?php echo $cpt;?>" class="<?php echo $cpt==13 ? 'big' : '';?> cell"><img src="<?php echo Url::image($doc,300);?>"></a>
 		<?php if($cpt == 13){?>
 			<hr>
 		<?php }?>

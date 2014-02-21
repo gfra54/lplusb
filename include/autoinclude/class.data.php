@@ -167,7 +167,7 @@ Class Data{
 						if($w || $h){
 							return Url::image($doc,$w,$h);	
 						} else {
-							return $doc;	
+							return str_replace($GLOBALS['chemin_site'],'',$doc);	
 						}
 					}
 				}

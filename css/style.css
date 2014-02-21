@@ -110,10 +110,9 @@ HR,.clear:after,.z:after{content:".";display:block !important;height:0;clear:bot
 	background:black;
 }
 .cell IMG{
-	margin-top: -10%;	
+	/*margin-top: -10%;	*/
 	transition: opacity 0.5s ease;
 	width:100%;
-	min-height:100%;
 	display:block;
 }
 .cell:hover IMG{
@@ -168,7 +167,9 @@ hr{
 	height: 0;
 	clear:both;
 }
-
+#sliding{
+	position: relative;
+}
 #slider{
 	margin-left:20px;
 	height: 500px;
@@ -193,9 +194,17 @@ hr{
 	overflow: hidden;;
 	display: inline-block;
 }
-#slider .slide IMG{
+#slider .slide IMG {
+    cursor:url(../images/zoom.cur), -moz-zoom-in;
+}
+#cadre IMG{
+	cursor: url(../images/zoomout.cur), -moz-zoom-out;	
+}
+#cadre IMG, #slider .slide IMG{
 	display: inline-block;
 	vertical-align: middle;
+	max-height: 95%;
+	max-width: 95%;
 }
 #slider .nav{
 	display: block;
@@ -206,6 +215,7 @@ hr{
 	-webkit-transform:rotate(45deg);
 	transform:rotate(45deg);
 	cursor:pointer;
+	z-index: 98;
 }
 #slider .nav{
 	transition:opacity 1s ease;
@@ -239,3 +249,77 @@ hr{
 	margin-top:10px;
 	margin-bottom:10px;
 }
+#cadre {
+	position: absolute;
+	z-index:100;
+	top: 0;
+	left: 0;
+	display:none;
+	text-align: center;
+}
+#fond{
+	z-index:99;
+/*	-webkit-filter: blur(3px);
+	filter: blur(3px);
+*/	background:rgba(0,0,0,0.9);
+	position: absolute;
+	top: 0;
+	left: 0;
+	display:none;
+}
+#fond:after{
+	position: absolute;
+	top: 48%;
+	left: 48%;
+	z-index: 1000;
+	display: block;
+	content: '';
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+    -webkit-animation: super-rainbow 0.5s infinite linear;
+    -moz-animation: super-rainbow 0.5s infinite linear;
+}
+
+/* See http://css-tricks.com/color-animate-any-shape-2/ */
+ @-webkit-keyframes super-rainbow {
+    0% {
+        background: #ffff00;
+    }
+    20% {
+        background: #ffcd00;
+    }
+    40% {
+        background: #c3d74b;
+    }
+    60% {
+        background: #c3d7d7;
+    }
+    80% {
+        background: #ffc39b;
+    }
+    100% {
+        background: #ffff00;
+    }
+}
+@-moz-keyframes super-rainbow {
+    0% {
+        background: #ffff00;
+    }
+    20% {
+        background: #ffcd00;
+    }
+    40% {
+        background: #c3d74b;
+    }
+    60% {
+        background: #c3d7d7;
+    }
+    80% {
+        background: #ffc39b;
+    }
+    100% {
+        background: #ffff00;
+    }
+}
+
