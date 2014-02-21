@@ -274,6 +274,8 @@ Class Data{
 	}
 	public static function htaccessRebuild(){
 		$htaccess = file_get_contents($GLOBALS['chemin_site'].'.htaccess.edit');
+		$parsed = parse_url($GLOBALS['url_site']);
+		$htaccess = str_replace('%root%', $parsed['path'], $htaccess);
 		$Pages = new Data('pages');
 		foreach($Pages->get() as $k=>$v) {
 			$htaccess.="\n".'RewriteRule   ^'.$v->data['uri'].'$						page.php?id='.$v->data['id'].'  [L,QSA]';
