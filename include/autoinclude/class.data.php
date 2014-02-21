@@ -8,6 +8,7 @@ Class Data{
 	var $w;
 	var $data;
 	var $docs;
+	var $list;
 
 	/**
 	 * Construtor
@@ -16,19 +17,36 @@ Class Data{
 	 * @param boolean $data the data itself
 	 */
 	function __construct($w,$id=false,$data=false) {
-		$this->w=$w;
+/*		if(!isset($GLOBALS['DESC'][$w])){
+			die('<p><b>'.htmlspecialchars($w).'</b> unknown</p>');
+		}
+*/		$this->w=$w;
 		if($id && $data===false) {
 			if($id == 'new'){
 				$data = $this->proto();
 			} else {
-				$data=$GLOBALS['bdd']->Get($w,$id);
+				$data=$GLOBALS['bdd']->Get($w,$id,$this->getSpec('class_field'));
 			}
 		} else if($data=='empty'){
 			$data = $this->proto();
 		}
-		$this->id=$id;
 		$this->data=$data;
+		if(is_array($this->data)){
+			foreach($this->data as $k=>$v){
+				$field = $this->getField($k);
+				if(!empty($field['options']['links'])) {
+					$tmp = explode(',', $v);
+					$v = array();
+					foreach($tmp as $a=>$b){
+						$v[$b]=true;
+					}
+				}
+				$this->data[$k]=$v;
+			}
+		}
+		$this->id=$id;
 		$this->docs=false;
+		$this->list=array();
 	}
 	function proto(){
 		$data = array();
@@ -86,14 +104,22 @@ Class Data{
 	 * @return array()
 	 */
 	function get($params=false,$other=false){
-		if(!is_array($params) && !empty($other)){
-			$tmp = array();
-			$tmp['where'] = $this->getSpec('where');
-			$tmp['where'][$params]=$other;
-			$params = $tmp;
+		$key = md5(serialize($params).serialize($other));
+		if(!isset($this->list[$key])) {
+			if(!is_array($params)){
+				if(!empty($other)){
+					$tmp = array();
+					$tmp['where'] = $this->getSpec('where');
+					$tmp['where'][$params]=$other;
+					$params = $tmp;
+				} else {
+					$params = array('where' => $this->getSpec('where'));
+				}
+			}
+			$params['orderby'] = !empty($params['orderby']) ? $params['orderby'] : $this->getSpec('order');
+			$this->list[$key] = $this->populateData($GLOBALS['bdd']->Select($this->w,!empty($params['where']) ? $params['where']: false,$params['orderby'],(!empty($params['start']) ? $params['start'].',' : '').(!empty($params['limit']) ? $params['limit']:'')));
 		}
-		$params['orderby'] = !empty($params['orderby']) ? $params['orderby'] : $this->getSpec('order');
-		return $this->populateData($GLOBALS['bdd']->Select($this->w,!empty($params['where']) ? $params['where']: false,$params['orderby'],(!empty($params['start']) ? $params['start'].',' : '').(!empty($params['limit']) ? $params['limit']:'')));
+		return $this->list[$key];
 	}
 	/**
 	 * Used to transform the $data given to match the Data class structure
@@ -132,8 +158,8 @@ Class Data{
 	 */
 	function getLogo($w=false,$h=false){
 		if($this->getSpec('docs')){
-			if(false && isset($this->data['main_image'])){
-				return str_replace($GLOBALS['CHEMIN_SITE'],'',$this->data['main_image']);
+			if(isset($this->data['main_image'])){
+				return str_replace($GLOBALS['chemin_site'],'',$this->data['main_image']);
 			} else {
 				$docs = $this->getDocs();
 				foreach($docs as $doc){
@@ -183,7 +209,8 @@ Class Data{
 	 */
 	function url($html=true){
 		if($html) {
-			$url = Rwurl::clean($lib).'-'.$this->w.'-'.$this->id.'.html';
+			$url = Url::clean($this->data[$this->getSpec('lib_field')]).'.html';
+//			$url = Url::clean($this->data[$this->getSpec('lib_field')]).'-'.$this->w.'-'.$this->id.'.html';
 		} else {
 			$url = $this->w.'.php?id='.$this->id;
 		}
@@ -194,6 +221,17 @@ Class Data{
 			return true;
 		} else return false;
 	}
+	/**
+	 * Get field for the current item type
+	 * @param  $field field we want
+	 * @return ?
+	 */
+	function getField($field) {
+		if(isset($GLOBALS['DESC'][$this->w][$field])) {
+			return $GLOBALS['DESC'][$this->w][$field];
+		} else 	return false;
+	}
+
 	/**
 	 * Get description for the current item type
 	 * @param  $field field we want
@@ -235,10 +273,14 @@ Class Data{
 		$File->rmdir($GLOBALS['chemin_site'].'IMG');
 	}
 	public static function htaccessRebuild(){
-		$htaccess = file_get_contents('.htaccess.edit');
+		$htaccess = file_get_contents($GLOBALS['chemin_site'].'.htaccess.edit');
 		$Pages = new Data('pages');
 		foreach($Pages->get() as $k=>$v) {
-			$htaccess.="\n".'RewriteRule   ^'.$v['uri'].'$								page.php?id='.$v['id'].'  [L,QSA]';
+			$htaccess.="\n".'RewriteRule   ^'.$v->data['uri'].'$						page.php?id='.$v->data['id'].'  [L,QSA]';
+		}
+		$Projects = new Data('projects');
+		foreach($Projects->get() as $k=>$v){
+			$htaccess.="\n".'RewriteRule   ^'.$v->url().'$								projects.php?id_project='.$k.'  [L,QSA]';
 		}
 		return file_put_contents($GLOBALS['chemin_site'].'.htaccess',$htaccess);
 	}

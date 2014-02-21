@@ -37,15 +37,17 @@ function showHeader($titre=false,$desc=false,$main_image=false,$_sideLeft=false)
 <html lang="fr-FR">
 <head>
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
-	<meta charset=windows-1252>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset=utf-8>
 	<title><?php echo $titre ? $titre.' - '.$GLOBALS['nom_site'] : $GLOBALS['nom_site'];?></title>
 	<meta name="description" content="<?php echo strip_tags($desc ? $desc : getSetting('desc_site'));?>" />
 	<meta name="keywords" content="<?php echo strip_tags($keywords ? $keywords : getSetting('keywords'));?>" />
 	<?php echo $compat;?>
 	<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script-->
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	<?php showOGImage($main_image);?>
 	<?php canonical($GLOBALS['CANONICAL']);?>
@@ -55,36 +57,53 @@ function showHeader($titre=false,$desc=false,$main_image=false,$_sideLeft=false)
 
 <div id="wrapper">
 	<div id="header">
-		<a href="/" id="logo_baseline"><img src="images/logo_baseline.png"></a>
+		<a href="<?php echo $GLOBALS['url_site'];?>" id="logo_baseline"><img src="images/logo_baseline.png"></a>
 		<hr>
 	</div>
 	<div class="ligne"></div>
-	<div id="nav">
-		<a class="main" href="">Réalisation</a>
-		<a class="main" href="">Catégories</a>
-		<a class="main" href="">Clients</a>
-		<a href="">Communauté d'agglomération de l'aéroport du b ourget</a>
-		<a href="">catherine andré</a>
-		<a href="">tnb</a>
-		<a href="">hermes</a>
-		<a href="">catherine andré</a>
-		<a href="">tnb</a>
-		<a href="">hermes</a>
-		<a href="">catherine andré</a>
-		<a href="">tnb</a>
-		<a href="">hermes</a>
-		<a href="">catherine andré</a>
-		<a href="">tnb</a>
-		<a href="">hermes</a>
-		
-		<div id="apropos">
-			<a href="">à propos</a>
-			<a href="">savoir faire</a>
-			<a href="">contact</a>
-		</div>
-	</div>
+	<div id="contentWrap">
+		<div id="nav">
+			<?php 
+			$selected = false;
+			$Projects = new Data('projects');
 
-	<div id="content">
+			$Rubriques = new Data('rubriques');
+			foreach($Rubriques->get() as $id_rubrique=>$Rubrique){?>
+				<a class="main"><?php echo $Rubrique->data['titre'];?></a>
+				<?php 
+					$projects = array();
+					foreach($Projects->get() as $k=>$Project){
+						if(isset($Project->data['rubriques'][$id_rubrique])){
+							$projects[$k]=$Project;
+						}
+					}?>
+
+				<div class="wrap <?php if(!$selected && isset($projects[$_GET['id_project']])){ echo 'visible'; $selected=true;}?>" id="projects_<?php echo $id_rubrique;?>">
+					<?php foreach ($projects as $k => $Project) {?>
+						<a class="<?php echo $_GET['id_project'] == $k ? 'selected' : '';?>" href="<?php echo $Project->url();?>"><?php echo $Project->data['titre'];?></a>
+					<?php }?>
+				</div>
+			<?php }?>
+
+			
+			<div id="apropos">
+				<?php $menu = explode("\n",getSetting('menu'));
+				foreach($menu as $k=>$v){
+				if(strstr($v, ':')!==false){
+					list($w,$id) = explode(':',$v);
+					$Link = new Data($w,$id);
+					$lib = $Link->data['titre'];
+					$url = $Link->data['uri'];
+				} else {
+					list($lib,$url) = explode('=>',$v);
+				}
+				?>
+				<a href="<?php echo $url;?>"><?php echo $lib;?></a>
+				<?php }?>
+			</div>
+		</div>
+
+		<div id="content">
 <?php
 }
 
@@ -92,6 +111,8 @@ function showFooter($home=false) {
 ?>
 
 
+		</div>
+		<hr>
 	</div>
 </div>
 

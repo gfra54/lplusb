@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', '2G');
 include('include/main.inc.php');
 $expires = 60*60*24*3;
 header("Pragma: public");

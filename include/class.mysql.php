@@ -219,11 +219,12 @@ class MySQL {
 	}
 	
 
-	function Get($from,$where,$idname='id',$cols='*'){
+	function Get($from,$where,$idname=false){
+		$idname = $idname ? $idname : 'id';
 		if(!is_array($where)){
 			$where = array($idname=>$where);
 		}
-		$r = $this->Select($from,$where,'','',false,'AND',$cols);
+		$r = $this->Select($from,$where);
 		if(list(,$ret) = each($r)){
 			return $ret;
 		} else {

@@ -17,7 +17,7 @@ showHeader(false,false,false,true);?>
 		<?php } else if($cpt==13) {?>
 			</div>
 		<?php }?>
-		<a href="" class="<?php echo $cpt==13 ? 'big' : '';?> cell"><img src="<?php echo $main_image;?>"></a>
+		<a href="<?php echo $proj->url();?>" class="<?php echo $cpt==13 ? 'big' : '';?> cell"><img src="<?php echo Url::image($main_image,300);?>"></a>
 		<?php if($cpt == 13){?>
 			<hr>
 		<?php }?>

@@ -28,6 +28,7 @@ $GLOBALS['DESC']['users'] = array(
 		'lib_list'=>'#name (#login)',
 		'help'=>"Administrateurs du site",
 		'sort'=>array('login'=>'Login','name'=>'Nom complet'),
+		'class_field'=>'login'
 		),
 );
 
@@ -52,7 +53,7 @@ $GLOBALS['DESC']['pages'] = array(
 		),
 
 	'texte' => array(
-		'lib'=>'Ordrer',
+		'lib'=>'Texte',
 		'type'=>'textarea',
 		),
 
@@ -111,7 +112,8 @@ $GLOBALS['DESC']['projects'] = array(
 		'type'=>'date',
 		'default'=>time(),
 		'help'=>"Permet de trier les projets sur la date"
-		),*/
+		),
+*/
 	'titre' => array(
 		'lib'=>'Titre du projet',
 		'type'=>'text',

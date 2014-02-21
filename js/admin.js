@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	$(".fancybox").fancybox();
+
+
 });
 
 function initUploadify(_w,_id) {

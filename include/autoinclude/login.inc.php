@@ -4,9 +4,9 @@ if(isset($_GET['logout'])){
 	redir('back');
 }
 if(isset($_POST['login'])){
-	if($admin = getUserByLogin($_POST['login']['login'])) {
-		if($admin['pass']==$_POST['login']['pass']){
-			$_SESSION['login']=$admin;
+	if($User = new Data('users',$_POST['login']['login'])) {
+		if($User->data['pass']==$_POST['login']['pass']){
+			$_SESSION['login']=$User->data;
 			redir('back');
 		}
 	}

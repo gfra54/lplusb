@@ -18,3 +18,17 @@ RewriteRule   ^IMG/img-y([^-]*)-(.*)							img.php?i=$2&y=$1&x=max&cut=true  [L,
 RewriteCond    %{REQUEST_FILENAME}  !-f
 RewriteRule   ^IMG/img-([^-]*)-([^-]*)-([^-]*)-(.*)						img.php?i=$4&x=$1&y=$2&cut=$3  [L,QSA]
 
+
+RewriteRule   ^a-propos.html$						page.php?id=1  [L,QSA]
+RewriteRule   ^savoir-faire.html$						page.php?id=2  [L,QSA]
+RewriteRule   ^contact.html$						page.php?id=3  [L,QSA]
+RewriteRule   ^theatre-national-de-bretagne.html$								projects.php?id_project=10  [L,QSA]
+RewriteRule   ^catherine-andre.html$								projects.php?id_project=9  [L,QSA]
+RewriteRule   ^le-beau-pour-tous.html$								projects.php?id_project=8  [L,QSA]
+RewriteRule   ^bartabas.html$								projects.php?id_project=7  [L,QSA]
+RewriteRule   ^hermes.html$								projects.php?id_project=6  [L,QSA]
+RewriteRule   ^sureshot-brothers.html$								projects.php?id_project=5  [L,QSA]
+RewriteRule   ^modzik.html$								projects.php?id_project=4  [L,QSA]
+RewriteRule   ^logos.html$								projects.php?id_project=3  [L,QSA]
+RewriteRule   ^24h-chrono.html$								projects.php?id_project=2  [L,QSA]
+RewriteRule   ^henry-mazelier.html$								projects.php?id_project=1  [L,QSA]

@@ -169,7 +169,7 @@ class Image
      * $IF->output('JPEG',NULL,NULL,80); // JPEG Q80 en flux direct
      * $IF->output('JPEG','cache.jpg',false,80); // JPEG Q80 enregistré dans cache.jpg sans écrasement si déjà existant
      */
-    function output($type='PNG',$file=NULL,$overwrite=true,$JPG_Q=90)
+    function output($type='PNG',$file=NULL,$overwrite=true,$JPG_Q=95)
     {
         if($file==NULL)
         {

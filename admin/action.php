@@ -63,8 +63,7 @@ if(isset($_POST['form'])) {
         }
         file_put_contents($dir.'images_order.txt',$form['images_order']);
 
-		// Data::viderCache();
-		// Data::htaccessRebuild();
+		Data::htaccessRebuild();
 
         redir('admin.php?w='.$w.'&id='.$id);
 }

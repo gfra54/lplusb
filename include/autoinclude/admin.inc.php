@@ -90,7 +90,7 @@ function showMenuAdmin($selected=false){
 			<a href="<?php echo $GLOBALS['url_site'];?>admin.php?create"><small>Créer les tables</small></a>
 		</div>
         <?php foreach($GLOBALS['DESC'] as $k => $v) {?>
-                <p>[ <a href="admin.php?w=<?php echo $k;?><?php echo isset($v['specs']['unique']) ? '&id_data='.$v['specs']['unique'] : '';?><?php echo isset($v['specs']['default_sort']) ? $v['specs']['default_sort'] : '';?>" title="<?php echo $v['specs']['help'];?>" <?php echo $_GET['w'] == $k ? 'class="selected"' : '';?>><?php echo $v['specs']['lib'];?></a> ] &nbsp; <small><?php echo $v['specs']['help'];?></small>
+                <p>[ <a href="admin.php?w=<?php echo $k;?><?php echo isset($v['specs']['unique']) ? '&id='.$v['specs']['unique'] : '';?><?php echo isset($v['specs']['default_sort']) ? $v['specs']['default_sort'] : '';?>" title="<?php echo $v['specs']['help'];?>" <?php echo $_GET['w'] == $k ? 'class="selected"' : '';?>><?php echo $v['specs']['lib'];?></a> ] &nbsp; <small><?php echo $v['specs']['help'];?></small>
                 </p>
         <?php }?>
         <p>[ <a href="<?php echo $GLOBALS['url_site'];?>">Retour au site</a> ] &nbsp; <small>Voir le site</small></p>
@@ -104,7 +104,7 @@ function showMenuAdmin($selected=false){
 		[
         <a href="admin.php" <?php echo basename($_SERVER['REQUEST_URI']) == 'admin.php' ? 'class="selected"' : "";?>>Accueil</a> &nbsp; 
         <?php foreach($GLOBALS['DESC'] as $k => $v) {?>
-                <a href="admin.php?w=<?php echo $k;?><?php echo isset($v['specs']['unique']) ? '&id_data='.$v['specs']['unique'] : '';?><?php echo isset($v['specs']['default_sort']) ? $v['specs']['default_sort'] : '';?>" title="<?php echo $v['specs']['help'];?>" <?php echo $_GET['w'] == $k ? 'class="selected"' : '';?>><?php echo $v['specs']['lib'];?></a> &nbsp;
+                <a href="admin.php?w=<?php echo $k;?><?php echo !empty($v['specs']['unique']) ? '&id='.$v['specs']['unique'] : '';?><?php echo isset($v['specs']['default_sort']) ? $v['specs']['default_sort'] : '';?>" title="<?php echo $v['specs']['help'];?>" <?php echo $_GET['w'] == $k ? 'class="selected"' : '';?>><?php echo $v['specs']['lib'];?></a> &nbsp;
         <?php }?>
         
 <!--        <a href="<?php echo $GLOBALS['url_site'];?>admin.php?vidercache">Vider cache</a> &nbsp;-->
@@ -222,9 +222,9 @@ function getInputForm($type,$name,$value=false,$id=false,$class=false,$do_lang=f
 				if($options['id_data']=='new'){
 					$html.= '<input type="submit" class="bouton" value="Cliquez ici pour faire une association de '.getSpec($w,'lib').'">';
 				} else {
-					$value = explode(',',$value);
+//					$value = explode(',',$value);
 					if(is_array($datas)){foreach($datas as $key=>$val){
-						$html.='<div><label><input id="'.$_id.'_'.$key.'" name="'.$name.($options['links'] ? '[links]['.$w.']' : '').'[]" type="checkbox" value="'.$key.'" '.(in_array($key,$value)!==false ? 'checked' : '').'> '.$val.'</label></div>';	
+						$html.='<div><label><input id="'.$_id.'_'.$key.'" name="'.$name.($options['links'] ? '[links]['.$w.']' : '').'[]" type="checkbox" value="'.$key.'" '.(isset($value[$key]) ? 'checked' : '').'> '.$val.'</label></div>';	
 					}}
 				}
 				$html.='</div>';

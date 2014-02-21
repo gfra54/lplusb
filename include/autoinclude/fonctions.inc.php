@@ -7,6 +7,18 @@ $GLO_COULEURS = array(
 //	'red'=>array('lib'=>'Rouge','color'=>'#fff'),
 );
 
+function mynl2br($string) {
+    if(preg_match_all ("/<p>([^`]*?)<\/p>/", $string, $match)) {
+        foreach($match as $a){
+            foreach($a as $b){
+            	$b=trim($b);
+			    $string  = str_replace($b,nl2br($b),$string);
+            }
+        }
+    }
+    return $string;
+}
+
 function closed() {
 	showHeader();
 	?><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
