@@ -13,11 +13,7 @@ $debug=true;
  * BDD Start
  */
 require_once "class.mysql.php";
-if($_SERVER['HTTP_HOST']=='www.lplusb.com' || $_SERVER['HTTP_HOST']=='lplusb.com'){
-	$GLOBALS['bdd'] = new MYSQL('lplusb','lplusb','larryDirt','mysql51-114.perso');
-} else {
-	$GLOBALS['bdd'] = new MYSQL('lplusb','root','','localhost');
-}
+require_once "settings.".$_SERVER['HTTP_HOST'].".php";
 
 /**
  * Settings start

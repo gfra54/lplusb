@@ -1,6 +1,5 @@
 <?php
 
-$GLOBALS['CUR_SETTINGS']=1;
 function initSettings() {
 	if(list(,$ret) = @each($GLOBALS['bdd']->Select('settings',array('id'=>$GLOBALS['CUR_SETTINGS'])))) {
 		foreach($ret as $k=>$v) {
