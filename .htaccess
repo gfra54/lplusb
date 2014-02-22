@@ -2,6 +2,11 @@ RewriteEngine on
 
 RewriteBase /lplusb/
 
+RewriteCond %{HTTP_HOST} !^127.0.0.1$ [NC]
+RewriteCond %{HTTP_HOST} !^www.lplusb.com$ [NC]
+RewriteRule (.*) http://www.lplusb.com/$1 [QSA,R=301,L]
+
+
 ErrorDocument 404 "<br><br><br><br><br><br><center><h1>Erreur 404</h1></center>"
 
 
