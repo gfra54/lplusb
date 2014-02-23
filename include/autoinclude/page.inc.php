@@ -32,6 +32,8 @@ function showHeader($titre=false,$desc=false,$main_image=false,$_sideLeft=false)
 	if(isset($GLOBALS['META']['keywords'])){
 		$keywords = $GLOBALS['META']['keywords'];
 	}
+	$ajax=isset($_GET['ajax']);
+if(!$ajax) {
 ?>
 <!doctype html>
 <html lang="fr-FR">
@@ -43,7 +45,7 @@ function showHeader($titre=false,$desc=false,$main_image=false,$_sideLeft=false)
 	<meta name="description" content="<?php echo strip_tags($desc ? $desc : getSetting('desc_site'));?>" />
 	<meta name="keywords" content="<?php echo strip_tags($keywords ? $keywords : getSetting('keywords'));?>" />
 	<?php echo $compat;?>
-	<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'> -->
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script-->
 	<script type="text/javascript" src="js/jquery.js"></script>
@@ -54,6 +56,7 @@ function showHeader($titre=false,$desc=false,$main_image=false,$_sideLeft=false)
 
 </head>
 <body <?php echo $GLOBALS['HOME'] ? 'id="home"' : '';?>>
+<?php }?>
 
 <div id="wrapper">
 	<div id="header">
@@ -68,22 +71,22 @@ function showHeader($titre=false,$desc=false,$main_image=false,$_sideLeft=false)
 			$Projects = new Data('projects');
 
 			$Rubriques = new Data('rubriques');
-			foreach($Rubriques->get() as $id_rubrique=>$Rubrique){?>
-				<a class="main"><?php echo $Rubrique->data['titre'];?></a>
-				<?php 
+			foreach($Rubriques->get() as $id_rubrique=>$Rubrique){
 					$projects = array();
 					foreach($Projects->get() as $k=>$Project){
 						if(isset($Project->data['rubriques'][$id_rubrique])){
 							$projects[$k]=$Project;
 						}
-					}?>
+					}
 
+					if(count($projects)>0){?>
+				<a class="main"><?php echo $Rubrique->data['titre'];?></a>
 				<div class="wrap <?php if(!$selected && isset($projects[$_GET['id_project']])){ echo 'visible'; $selected=true;}?>" id="projects_<?php echo $id_rubrique;?>">
 					<?php foreach ($projects as $k => $Project) {?>
-						<a class="<?php echo $_GET['id_project'] == $k ? 'selected' : '';?>" href="<?php echo $Project->url();?>"><?php echo $Project->data['titre'];?></a>
+						<a class="slidin <?php echo $_GET['id_project'] == $k ? 'selected' : '';?>" href="<?php echo $Project->url();?>"><?php echo $Project->data['titre'];?></a>
 					<?php }?>
 				</div>
-			<?php }?>
+			<?php }}?>
 
 			
 			<div id="apropos">
@@ -98,7 +101,7 @@ function showHeader($titre=false,$desc=false,$main_image=false,$_sideLeft=false)
 					list($lib,$url) = explode('=>',$v);
 				}
 				?>
-				<a href="<?php echo $url;?>"><?php echo $lib;?></a>
+				<a href="<?php echo $url;?>" class="slidin"><?php echo $lib;?></a>
 				<?php }?>
 			</div>
 		</div>
@@ -108,6 +111,7 @@ function showHeader($titre=false,$desc=false,$main_image=false,$_sideLeft=false)
 }
 
 function showFooter($home=false) {
+	$ajax=isset($_GET['ajax']);
 ?>
 
 
@@ -115,10 +119,11 @@ function showFooter($home=false) {
 		<hr>
 	</div>
 </div>
-
+<?php if(!$ajax){?>
 </body>
 </html>
 <?php
+}
 }
 
 

@@ -15,7 +15,11 @@ showHeader($Project->data['titre'],false,false,true);?>
 	</li>
 	<li class="nav" id="next"></li>
 	</ul>
-	<div id="description"></div>
+	<div id="description">
+		<b><?php echo $Project->data['titre'];?></b><br>
+		<?php echo nl2br($Project->data['texte']);?>
+
+	</div>
 
 	<?php $cpt=0;foreach($Project->getDocs() as $id_doc => $doc) {$cpt++;
 
@@ -25,7 +29,7 @@ showHeader($Project->data['titre'],false,false,true);?>
 		<?php } else if($cpt==13) {?>
 			</div>
 		<?php }?>
-		<a href="#i<?php echo $cpt;?>" class="<?php echo $cpt==13 ? 'big' : '';?> cell"><img src="<?php echo Url::image($doc,300);?>"></a>
+		<a href="#i<?php echo $cpt;?>" class="toup <?php echo $cpt==13 ? 'big' : '';?> cell"><img src="<?php echo Url::image($doc,300);?>"></a>
 		<?php if($cpt == 13){?>
 			<hr>
 		<?php }?>

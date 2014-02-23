@@ -1,6 +1,21 @@
 $(document).ready(function() {
 	$(".fancybox").fancybox();
 
+    $( "#sortable" ).sortable({'stop':function(){
+		var ids = '';
+
+		$("#sortable input:checkbox").each(function() {
+			ids+=ids ? ',' : '';
+			ids+=$(this).val();
+		});
+    	$.post(document.location.href,{
+    		w:'sort',
+    		ids : ids
+    	}).done(function(data){
+    		console.log(data)
+    	});
+    }});
+    $( "#sortable" ).disableSelection();
 
 });
 

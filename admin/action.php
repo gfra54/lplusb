@@ -3,6 +3,19 @@ $w = !empty($_GET['w']) && isset($GLOBALS['DESC'][$_GET['w']]) ? $_GET['w'] : fa
 $id = !empty($_GET['id']) ? $_GET['id'] : false;
 
 /*
+Trier les items
+ */
+if($_POST['w'] == 'sort'){
+	$ids = explode(',',$_POST['ids']);
+	foreach($ids as $k=>$v){
+		$tmp = new Data($w,$v);
+		$tmp->data['ordre']=$k;
+		$tmp->save();
+	}
+	exit;
+}
+
+/*
 Effacer un item
  */
 if(isset($_GET['del'])){

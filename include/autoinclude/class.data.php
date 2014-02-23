@@ -252,7 +252,14 @@ Class Data{
 	}
 
 	function insertData($data=false) {
-		if($GLOBALS['bdd']->Insert($data ? $data : $this->data,$this->w)) {
+		$data = $data ? $data : $this->data;
+		foreach($data as $k=>$v){
+			$field = $this->getField($k);
+			if(is_array($v) && $field['options']['links']){
+				$data[$k]=implode(',',array_keys($v));
+			}
+		}
+		if($GLOBALS['bdd']->Insert($data,$this->w)) {
 			return $GLOBALS['bdd']->LastInsertID();
 		} else return false;
 	}
@@ -264,7 +271,14 @@ Class Data{
 	}
 
 	function updateData($data=false) {
-		return $GLOBALS['bdd']->Update($this->w,$data ? $data : $this->data,array('id'=>$this->id));
+		$data = $data ? $data : $this->data;
+		foreach($data as $k=>$v){
+			$field = $this->getField($k);
+			if(is_array($v) && $field['options']['links']){
+				$data[$k]=implode(',',array_keys($v));
+			}
+		}
+		return $GLOBALS['bdd']->Update($this->w,$data,array('id'=>$this->id));
 	}
 
 	public static function viderCache(){

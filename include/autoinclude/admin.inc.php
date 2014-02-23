@@ -55,7 +55,7 @@ function showHeaderAdmin($titre=false,$extra=false) {
 
 <link rel="stylesheet" href="fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
 <script type="text/javascript" src="fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-
+<script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 <script language="JavaScript" type="text/javascript" src="js/tool-man/core.js"></script>
 <script language="JavaScript" type="text/javascript" src="js/tool-man/events.js"></script>

@@ -117,7 +117,7 @@ class MySQL {
 	// Executes MySQL query
 	function ExecuteSQL($query){
 
-		// echo '<pre>'.htmlspecialchars($query).'</pre>';
+		// echo "\n".'<pre>'.htmlspecialchars($query).'</pre>';
 
 		$this->lastQuery 	= $query;
 		if($this->result 	= mysql_query($query, $this->databaseLink)){

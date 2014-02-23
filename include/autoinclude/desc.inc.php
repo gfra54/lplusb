@@ -92,7 +92,8 @@ $GLOBALS['DESC']['rubriques'] = array(
 		'lib_new'=>'Ajouter une nouvelle rubrique',
 		'lib_list'=>'#pub #titre',
 		'help'=>"Rubriques affichées dans la colonne de gauche",
-		'ordre'=>'ordre ASC, id DESC',
+		'order'=>'ordre ASC, id DESC',
+		'sortable'=>true
 		),
 );
 
@@ -128,11 +129,6 @@ $GLOBALS['DESC']['projects'] = array(
 		'default'=>-1,
 		'help'=>"Rubrique dont d&eacute;pend le projet",
 		),
-	'accroche' => array(
-		'lib'=>'Accroche',
-		'type'=>'smalltextarea',
-		'help'=>"texte court (3 lignes) destin&eacute; &agrave; &ecirc;tre affich&eacute; sur la page des projets"
-		),
 	'texte' => array(
 		'lib'=>'Description',
 		'type'=>'textarea',
@@ -162,11 +158,12 @@ $GLOBALS['DESC']['projects'] = array(
 		'lib'=>'Projets',
 		'lib_edit'=>'Editer ce projet',
 		'lib_new'=>'Ajouter un nouveau projet',
-		'lib_list'=>'#pub #titre',
+		'lib_list'=>'#pub #titre</a>',
 		'help'=>"Administration des projets",
 		'help2'=>"Uploader 2 PDF Maximun",
 		'order'=>'ordre ASC, id DESC',
 		'where'=>array('pub'=>1),
+		'sortable'=>true
 		),
 );
 

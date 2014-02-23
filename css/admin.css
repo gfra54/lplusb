@@ -157,3 +157,19 @@ li {
 #menu .selected {
 	color:green;
 }
+
+#sortable li {
+	padding-left: 25px;
+	background: url(../images/sort.png) no-repeat left center;
+}
+
+
+ol,ul,li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;	
+	list-style: none; 
+}
