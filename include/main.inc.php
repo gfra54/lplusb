@@ -22,9 +22,12 @@ require_once "settings.inc.php";
 initSettings();
 
 /**
- * autres includes
+ * Auto include
  */
-require_once './include/includes.inc.php';
+foreach (glob($GLOBALS['chemin_site']."include/autoinclude/*.php") as $filename){
+    include $filename;
+}
+
 
 /**
  * Debug start

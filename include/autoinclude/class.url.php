@@ -1,4 +1,5 @@
 <?php
+
 Class Url{
 
 	public static function image($img,$w=false,$h=false,$cut='true',$return=true){

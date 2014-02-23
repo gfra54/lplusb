@@ -1,4 +1,4 @@
-		<?php 
+<?php 
 		$Data = new Data($w,$id);
         ?>
         <form id="form_upload" action="admin.php?w=<?php echo $w;?>" method="post" enctype="multipart/form-data">
