@@ -129,6 +129,11 @@ $GLOBALS['DESC']['projects'] = array(
 		'default'=>-1,
 		'help'=>"Rubrique dont d&eacute;pend le projet",
 		),
+	'chapo' => array(
+		'lib'=>'Description courte',
+		'type'=>'textarea',
+		'help'=>"texte destin&eacute; &agrave; &ecirc;tre affich&eacute; sur la page d'accueil, dans la case du projet"
+		),
 	'texte' => array(
 		'lib'=>'Description',
 		'type'=>'textarea',
