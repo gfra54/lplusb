@@ -1,14 +1,14 @@
-<?php
+ï»¿<?php
 /* Class ImageFilter */
 
 /**
-* Classe de traitement d'image prennant à sa charge les traitement de base afin de simplifier au maximum la génération d'image en PHP
+* Classe de traitement d'image prennant Ã  sa charge les traitement de base afin de simplifier au maximum la gÃ©nÃ©ration d'image en PHP
 *
 * PHP versions 4 et 5 (GD 1.x et 2.x)
 *
-* Cette classe à été developpé dans le but de simplifier la vie de tous. Libre à vous de l'inclure dans vos projet.
-* Une seule limitation, je vous serez reconnaissant de me tenir au courant des éventuelles corrections,
-* modifications, ajouts que vous pourriez faire afin que je puisse les intégrés au projet initial.
+* Cette classe Ã  Ã©tÃ© developpÃ© dans le but de simplifier la vie de tous. Libre Ã  vous de l'inclure dans vos projet.
+* Une seule limitation, je vous serez reconnaissant de me tenir au courant des Ã©ventuelles corrections,
+* modifications, ajouts que vous pourriez faire afin que je puisse les intÃ©grÃ©s au projet initial.
 *
 * @category    Traitement des images
 * @author      Delestre Mathieu (http://ldbglobe.fried-rice.net/)
@@ -37,14 +37,14 @@ class Image
 {
     /**
      * $colorsToWork :
-     * détermine le nombre de couleur par défaut sur lequel travaillerons les filtres
-     * Mettre une valeur faible peut avoir des comportement étonnant
+     * dÃ©termine le nombre de couleur par dÃ©faut sur lequel travaillerons les filtres
+     * Mettre une valeur faible peut avoir des comportement Ã©tonnant
      * selon la version de la librairie et de la plateforme d'execution.
-     * En effet si manifestement sous Windows les couleurs sont bien choisit (l'image resultante est plutot fidèle)
+     * En effet si manifestement sous Windows les couleurs sont bien choisit (l'image resultante est plutot fidÃ¨le)
      * sous Linux le choix est parfois "particulier" et il n'est pas rare d'obtenir un image au teintes
-     * trop claire ou trop sombre (parfois même toutes identiques > donc plus d'image ^^)
+     * trop claire ou trop sombre (parfois mÃªme toutes identiques > donc plus d'image ^^)
      *
-     * $GD_VERSION : Peut prendre la valeur 1 ou 2 selon la version de la librairie GD installé sur le serveur
+     * $GD_VERSION : Peut prendre la valeur 1 ou 2 selon la version de la librairie GD installÃ© sur le serveur
      *
      */
     var $GD_VERSION=2;
@@ -96,7 +96,7 @@ class Image
         }
     }
     /*
-     * Création d'une image vierge
+     * CrÃ©ation d'une image vierge
      * $w=largeur $h=hauteur
      *
      */
@@ -116,8 +116,8 @@ class Image
     }
     
     /*
-     * Méthode privé (pas vraiment possible en PHP4) gérant l'ouverture et la mise en mémoire d'une image depuis un fichier
-     * utilisé entre autre par loadImage(...)  et Stamp(...)
+     * MÃ©thode privÃ© (pas vraiment possible en PHP4) gÃ©rant l'ouverture et la mise en mÃ©moire d'une image depuis un fichier
+     * utilisÃ© entre autre par loadImage(...)  et Stamp(...)
      *
      */
     function loadImageFile($path,$force=false)
@@ -139,8 +139,8 @@ class Image
     }
     
     /*
-     * Méthode de lecture des dimension de l'image actuellement en court de traitement
-     * il est aussi possible de lui passer en paramètre un objet de type image
+     * MÃ©thode de lecture des dimension de l'image actuellement en court de traitement
+     * il est aussi possible de lui passer en paramÃ¨tre un objet de type image
      *
      */
     function getImageSize($img=NULL)
@@ -162,12 +162,12 @@ class Image
     }
 
     /* 
-     * Méthode de sorti
-     * Il est possible de générer soit des PNG soit des JPEG (gestion du niveau de qualité)
-     * l'image peut soit être envoyé soit en flux direct, soit enregistré dans un fichier
+     * MÃ©thode de sorti
+     * Il est possible de gÃ©nÃ©rer soit des PNG soit des JPEG (gestion du niveau de qualitÃ©)
+     * l'image peut soit Ãªtre envoyÃ© soit en flux direct, soit enregistrÃ© dans un fichier
      * ex:
      * $IF->output('JPEG',NULL,NULL,80); // JPEG Q80 en flux direct
-     * $IF->output('JPEG','cache.jpg',false,80); // JPEG Q80 enregistré dans cache.jpg sans écrasement si déjà existant
+     * $IF->output('JPEG','cache.jpg',false,80); // JPEG Q80 enregistrÃ© dans cache.jpg sans Ã©crasement si dÃ©jÃ  existant
      */
     function output($type='PNG',$file=NULL,$overwrite=true,$JPG_Q=95)
     {
@@ -214,10 +214,10 @@ class Image
     }
     
     /*
-     * Méthode de découpe
+     * MÃ©thode de dÃ©coupe
      * ex
-     * $IF->crop(10,10,50,50) // découpe l'image courante depuis le point 10,10 sur une zone de 50x50 pixel
-     * l'image courante devient l'élément découpé
+     * $IF->crop(10,10,50,50) // dÃ©coupe l'image courante depuis le point 10,10 sur une zone de 50x50 pixel
+     * l'image courante devient l'Ã©lÃ©ment dÃ©coupÃ©
      */
     function crop($X,$Y,$WIDTH,$HEIGHT)
     {
@@ -232,16 +232,16 @@ class Image
     }
     
     /**
-     * Méthode de redimensionnement.
+     * MÃ©thode de redimensionnement.
      *
-     * Les deux paramètre $WIDTH et $HEIGHT peuvent être précisé soit en pixel (70) soit en % ('70%')
+     * Les deux paramÃ¨tre $WIDTH et $HEIGHT peuvent Ãªtre prÃ©cisÃ© soit en pixel (70) soit en % ('70%')
      *
      * 3 mode sont possibles : "force", "crop" ou "ratio"
-     *    - force = par déformation
+     *    - force = par dÃ©formation
      *    - crop = par recadrage au centre
      *    - ratio = par conservation de l'aspect ratio ($WIDTH et $HEIGHT = Boite de travail)
      *
-     * Le paramètre expand permet de préciser si les agrandissement sont autorisé
+     * Le paramÃ¨tre expand permet de prÃ©ciser si les agrandissement sont autorisÃ©
     **/
     function resize($WIDTH,$HEIGHT,$MODE='force',$EXPAND=false)
     {
@@ -257,23 +257,23 @@ class Image
         if(strpos($HEIGHT,'%',0))
             $HEIGHT=$imgHeight * $HEIGHT / 100;
     
-        //si pas de dimension précisées alors echec
+        //si pas de dimension prÃ©cisÃ©es alors echec
         if($WIDTH==0 && $HEIGHT==0)
             return false;
             
-        //si jamais une dimension = 0 on détermine la valeur la plus approprié.
+        //si jamais une dimension = 0 on dÃ©termine la valeur la plus appropriÃ©.
         if(min($WIDTH,$HEIGHT)==0)
         {
             switch($MODE)
             {
-                case 'crop' : //on coupe en carré
+                case 'crop' : //on coupe en carrÃ©
                     $WIDTH=$HEIGHT=max($WIDTH,$HEIGHT);
                     break;
                     
-                case 'force': //on passe en ratio pour éviter les déformation
+                case 'force': //on passe en ratio pour Ã©viter les dÃ©formation
                     $MODE='ratio';
                     
-                case 'ratio' : //on prend une taille très grand pour ne pas limiter sur la cote non précisé
+                case 'ratio' : //on prend une taille trÃ¨s grand pour ne pas limiter sur la cote non prÃ©cisÃ©
                     if($WIDTH===0)
                         $WIDTH=9999;
                     else
@@ -285,7 +285,7 @@ class Image
             }
         }
         
-        //on détermine les dimension du resize ($_w et $_h)
+        //on dÃ©termine les dimension du resize ($_w et $_h)
         if($MODE=='ratio')
         {
             $_w=99999;
@@ -308,7 +308,7 @@ class Image
         }
         else
         {
-            //par découpage de l'image source
+            //par dÃ©coupage de l'image source
             $_w=$WIDTH;
             $_h=$HEIGHT;
         }
@@ -327,7 +327,7 @@ class Image
         }
         else //crop
         {
-            //on détermine ensuite la zone d'affiche réel pour l'image    
+            //on dÃ©termine ensuite la zone d'affiche rÃ©el pour l'image    
             $innerRatio=$_w/$_h;
             if($ratio>=$innerRatio)
             {
@@ -353,7 +353,7 @@ class Image
     }
 
     /**
-     * Méthode de remplissage (outils pot de peinture ^^)
+     * MÃ©thode de remplissage (outils pot de peinture ^^)
      * $IF->fill(10,10,255,255,255) //on rempli au point 10,10 avec du blanc
      */
     function fill($x,$y,$r,$g,$b)
@@ -363,8 +363,8 @@ class Image
     }
     
     /**
-     * Méthode de correction de la luminosité et du contraste
-     * $IF->lightContrast(10,50) // L et C de -100 à 100
+     * MÃ©thode de correction de la luminositÃ© et du contraste
+     * $IF->lightContrast(10,50) // L et C de -100 Ã  100
      *
      */
     function lightContrast($L=0,$C=0)
@@ -386,7 +386,7 @@ class Image
             $g = round($g + $C / 100 * ($g-127));
             $b = round($b + $C / 100 * ($b-127));
             
-            //Luminosité :
+            //LuminositÃ© :
             $r = round($r * ( 1 + $L / 100));
             $g = round($g * ( 1 + $L / 100));
             $b = round($b * ( 1 + $L / 100));
@@ -402,7 +402,7 @@ class Image
     }
     
     /**
-     * Génère le négatif de l'image courante
+     * GÃ©nÃ¨re le nÃ©gatif de l'image courante
      *
      */
     function negative()
@@ -426,8 +426,8 @@ class Image
     
     /**
      * Modification de teinte sur l'image courante
-     * whiteness = correction de la luminosité (un décalage peut être introduit lors du changement de teinte)
-     * decal R,G,B = décalage de teinte sur les 3 cannaux
+     * whiteness = correction de la luminositÃ© (un dÃ©calage peut Ãªtre introduit lors du changement de teinte)
+     * decal R,G,B = dÃ©calage de teinte sur les 3 cannaux
      *
      */
     function colorize($whiteness, $decalR, $decalG, $decalB)
@@ -457,7 +457,7 @@ class Image
     }
     
     /**
-     * Désaturation de l'image courante
+     * DÃ©saturation de l'image courante
      *
      */
     function grayscale($taux=1)
@@ -481,7 +481,7 @@ class Image
     }
     
     /**
-     * Modification de teinte pré-réglé pour réaliser l'effet sepia
+     * Modification de teinte prÃ©-rÃ©glÃ© pour rÃ©aliser l'effet sepia
      *
      */
     function sepia()
@@ -491,8 +491,8 @@ class Image
     }
     
     /**
-     * Pixelisation de l'image courante à la taille choisit
-     * Par défault la mosaic sera carré $w=$h mais il est possible en précisant 2 paramètre de générer des blocs réctangulaires
+     * Pixelisation de l'image courante Ã  la taille choisit
+     * Par dÃ©fault la mosaic sera carrÃ© $w=$h mais il est possible en prÃ©cisant 2 paramÃ¨tre de gÃ©nÃ©rer des blocs rÃ©ctangulaires
      *
      */
     function mosaic($wSize,$hSize=0)
@@ -527,12 +527,12 @@ class Image
     /**
      * Application d'un tampon sur l'image courante.
      *
-     * le tampon peut être soit un objet image (généré ou non via la classe ImageFilter), soit un fichier
-     * (meilleur méthode pour préserver les couleurs et transparence)
+     * le tampon peut Ãªtre soit un objet image (gÃ©nÃ©rÃ© ou non via la classe ImageFilter), soit un fichier
+     * (meilleur mÃ©thode pour prÃ©server les couleurs et transparence)
      *
-     * x et y détermine le point d'aplication du tampon
+     * x et y dÃ©termine le point d'aplication du tampon
      *
-     * 6 mode  de fusion sont disponibles (tous les mode respecte la couche alpha - si présent)
+     * 6 mode  de fusion sont disponibles (tous les mode respecte la couche alpha - si prÃ©sent)
      *    - normal = Pix1 <= Pix2
      *    - multiply = Pix1 <= Pix1*Pix2/255 (si Pix2 = 255 = Blanc pas de changement)
      *    - add = Pix1 <= Pix1+Pix2
@@ -664,7 +664,7 @@ class Image
                     break;
             }
             imagedestroy($this->resourceImage); //on supprime l'image d'origine
-            $this->resourceImage=$img2; // et on la remplace par la version modifié
+            $this->resourceImage=$img2; // et on la remplace par la version modifiÃ©
         }
         if($deleteRes)
         {
@@ -690,7 +690,7 @@ class Image
     
     /**
      * Application d'un filtre 3x3
-     * en fonction des paramètres il est alors possible de réaliser des passes hauts, passes bas, etc...
+     * en fonction des paramÃ¨tres il est alors possible de rÃ©aliser des passes hauts, passes bas, etc...
      *
      */
     function applyMatrix3x3($matrix)
@@ -759,7 +759,7 @@ class Image
     }
 
     /**
-     * Méthode basé sur le filtre matriciel optimisé pour réaliser une accentuation de détail (passe haut)
+     * MÃ©thode basÃ© sur le filtre matriciel optimisÃ© pour rÃ©aliser une accentuation de dÃ©tail (passe haut)
      *
      */
     function Sharpen($k=1)
@@ -813,7 +813,7 @@ class Image
     }
     
     /**
-     * Opération de mirroir sur l'image (horizontale ou vertical)
+     * OpÃ©ration de mirroir sur l'image (horizontale ou vertical)
      * type de flip h > horizontal, v > vertical
      *
      */
@@ -839,8 +839,8 @@ class Image
     }
     
     /**
-     * Opération rotation
-     * angle de rotation (90°, 180°, 270°)
+     * OpÃ©ration rotation
+     * angle de rotation (90Â°, 180Â°, 270Â°)
      *
      */
     function rotation($angle=90)
@@ -897,7 +897,7 @@ class Image
     }    
     
     /**
-     * Méthode permettant l'execution automatique d'une série de méthode.
+     * MÃ©thode permettant l'execution automatique d'une sÃ©rie de mÃ©thode.
      *
      * $commands=array(
      *     array('filter'=>'loadImage','params'=>array('test.png')),
@@ -928,8 +928,8 @@ class Image
     }
     
     /**
-     * Méthode de redimesionnement selon la version de librairie GD (1 ou 2)
-     * GD 1.x ne gérant pas les images 24bits, elle ne fait pas de ré-échantillonnage sur les redimensionnemnt
+     * MÃ©thode de redimesionnement selon la version de librairie GD (1 ou 2)
+     * GD 1.x ne gÃ©rant pas les images 24bits, elle ne fait pas de rÃ©-Ã©chantillonnage sur les redimensionnemnt
      *
      */
     function imagecopyresampled($out, $in, $dstX, $dstY, $srcX, $srcY, $dstW, $dstH, $srcW, $srcH)
@@ -941,8 +941,8 @@ class Image
     }
 
     /**
-     * Méthode de création d'image  selon la version de librairie GD (1 ou 2)
-     * GD 1.x ne gère pas les images en 24bits on crée alors une image 256 couleurs
+     * MÃ©thode de crÃ©ation d'image  selon la version de librairie GD (1 ou 2)
+     * GD 1.x ne gÃ¨re pas les images en 24bits on crÃ©e alors une image 256 couleurs
      *
      */    
     function imagecreate($w,$h)

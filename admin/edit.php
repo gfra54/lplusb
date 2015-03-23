@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 		$Data = new Data($w,$id);
         ?>
         <form id="form_upload" action="admin.php?w=<?php echo $w;?>" method="post" enctype="multipart/form-data">
@@ -84,7 +84,7 @@
 												</div>
 											</div>
 
-											<div class="box-legende"><input name="form[images][<?php echo $Doc->basename();?>]" value="<?php echo htmlentities($Doc->text);?>" placeholder="Légende de la photo" type="text"></div>
+											<div class="box-legende"><input name="form[images][<?php echo $Doc->basename();?>]" value="<?php echo htmlspecialchars($Doc->text);?>" placeholder="Légende de la photo" type="text"></div>
 	                                        </li>
 	                                <?php }?>
 	                        <?php }?>

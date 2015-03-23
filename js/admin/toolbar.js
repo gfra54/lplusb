@@ -1,4 +1,4 @@
-function alterTextSpecial(obj, q,o,f)
+﻿function alterTextSpecial(obj, q,o,f)
 {
 	if(val = prompt(q)) {
 		wrapText(g(obj), '<'+(o.replace('0val0',val))+'>', f ? '</'+f+'>' : '');
@@ -37,7 +37,7 @@ function wrapText(obj, beginTag, endTag)
 	        document.selection.createRange().text = beginTag + range.text + endTag;
 	}
 	else {
-		_lib = confirm('Texte � mettre en forme');
+		_lib = confirm('Texte à mettre en forme');
 		obj.value += beginTag+_lib+endTag
 	}
 ;

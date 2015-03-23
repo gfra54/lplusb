@@ -1,4 +1,4 @@
-@mixin easing($name){
+﻿@mixin easing($name){
   @if($name == 'easeInBack'){
     transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
     transition-timing-function: cubic-bezier(0.600, -0.280, 0.735, 0.045); 

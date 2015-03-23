@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2005 Tim Taylor Consulting <http://tool-man.org/>
 
 Permission is hereby granted, free of charge, to any person obtaining a

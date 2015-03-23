@@ -1,4 +1,4 @@
-/*        function adjustLogo(etat) {
+﻿/*        function adjustLogo(etat) {
         	if(etat) {
                 	document.getElementById('float_logo').style.top=window.offsetHeight = window.scrollTop;
         	}

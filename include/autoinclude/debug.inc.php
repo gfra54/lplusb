@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $QUERIES=array();
 function logQuery($q) {

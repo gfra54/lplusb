@@ -1,10 +1,10 @@
-<?php
+﻿<?php
 
 
 function include_js($files=false){
 	$time = time();
 	if(!$files) {
-		if(ENV == 'DEV') {
+		if(ENV == '!DEV') {
 			$files = glob('build/js/*.js');
 			$add='?'.$time;
 		} else {
@@ -25,7 +25,7 @@ function include_js($files=false){
 function include_css($files=false){
 	$time = time();
 	if(!$files) {
-		if(ENV == 'DEV') {
+		if(ENV == '!DEV') {
 			$files = glob('build/css/*.css');
 			$add='?'.$time;
 		} else {

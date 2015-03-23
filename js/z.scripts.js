@@ -1,4 +1,4 @@
-var _prec_wrap=false;
+﻿var _prec_wrap=false;
 $(document).ready(function() {
 
 	/*

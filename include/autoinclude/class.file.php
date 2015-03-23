@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 Class File{
 	var $f;
 	var $ext;

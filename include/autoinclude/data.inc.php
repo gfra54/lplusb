@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /*
 function createLinks($w1,$id1,$w2,$ids){

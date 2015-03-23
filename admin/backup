@@ -1,4 +1,4 @@
-                if($total_pages>1){?>
+﻿                if($total_pages>1){?>
                 <div>
 				<script>
 				function doPaginer(){
@@ -39,7 +39,7 @@ if(isset($_GET['create'])){
 				$champs[$champ]=$tmp;
 			} else {
 				if(!empty($infos['docs'])) {
-					$champs['main_image']=array('type'=>'VARCHAR(255)','comment'=>'Image principale associée');
+					$champs['main_image']=array('type'=>'VARCHAR(255)','comment'=>'Image principale associÃ©e');
 				}
 			}
 		}

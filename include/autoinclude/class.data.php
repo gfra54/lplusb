@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Data PHP class
  */
@@ -58,7 +58,7 @@ Class Data{
 	/**
 	 * link between two tables
 	 * @param  $w2  data type to link
-	 * @param  $ids ids to link to the n°1 item 
+	 * @param  $ids ids to link to the nÂ°1 item 
 	 * @return string CVS id
 	 */
 	function createLinks($w2,$ids){

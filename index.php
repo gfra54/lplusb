@@ -1,6 +1,15 @@
-<?php 
+﻿<?php 
 include "include/main.inc.php";
 $GLOBALS['HOME']=true;
+
+if(isset($_GET['test'])) {
+	$_SESSION['ok']=true;
+	header('Location:'.str_replace('test','',$_SERVER['REQUEST_URI']));
+}
+if(!isset($_SESSION['ok'])) {
+	echo '<body style="background:#ccc url(images/logo.svg) no-repeat center center;margin:0;padding:0;text-align: center;padding-top: 40%;font-family:arial;font-size:0.6em">Work in progress<br>Come back soon !</body>';
+	die();
+}
 
 //$projects = getSortData('projects','id',false,'pub');
 

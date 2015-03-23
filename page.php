@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 include "include/main.inc.php";
 if($Page = new Data('pages',$_GET['id'])) {
 

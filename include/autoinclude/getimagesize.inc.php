@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 function genDir() {
 	@mkdir($GLOBALS['chemin_site']."gen/",0777);

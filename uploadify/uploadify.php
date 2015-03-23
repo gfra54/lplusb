@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include "../include/main.inc.php";
 
 $what = basename($_POST['what']);

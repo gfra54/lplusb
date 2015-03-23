@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 function getVideos($debut=0,$nb=false,$exclude=false) {
 
 	$data = getSortData('videos','date',true,'pub');	

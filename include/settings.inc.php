@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 function initSettings() {
 	if(list(,$ret) = @each($GLOBALS['bdd']->Select('settings',array('id'=>$GLOBALS['CUR_SETTINGS'])))) {

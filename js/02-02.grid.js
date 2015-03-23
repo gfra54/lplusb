@@ -1,4 +1,4 @@
-document.getElementById('content').style.opacity=0;
+﻿document.getElementById('content').style.opacity=0;
 
 $(document).ready(function() {
 	var _content_width = $('#content').width();

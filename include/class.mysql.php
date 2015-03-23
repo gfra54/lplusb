@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
  *  Copyright (C) 2012
  *     Ed Rackham (http://github.com/a1phanumeric/PHP-MySQL-Class)

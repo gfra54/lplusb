@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 function setMeta($w,$data){
 	if($data) {
@@ -37,6 +37,8 @@ if(!$ajax) {
 ?>
 <!doctype html>
 <html lang="fr-FR">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
 <head>
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

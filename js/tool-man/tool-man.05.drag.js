@@ -1,4 +1,4 @@
-/* Copyright (c) 2005 Tim Taylor Consulting (see LICENSE.txt) */
+﻿/* Copyright (c) 2005 Tim Taylor Consulting (see LICENSE.txt) */
 
 ToolMan._dragFactory = {
 	createSimpleGroup : function(element, handle) {

@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 
 $tab_toolbar = array(
 	'Titre'=>'h2',	
@@ -32,9 +32,11 @@ function showToolBar($id_cible) {
 function showHeaderAdmin($titre=false,$extra=false) {
 	$headerSent=true;
 ?>
-<!DOCTYPE html>
-<html>
+
+<html lang="fr-FR" class="no-js">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
 <title><?php echo $titre ? $titre : 'Admin';?></title>
 <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/admin/admin.css"/>

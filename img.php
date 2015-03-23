@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 ini_set('memory_limit', '2G');
 include('include/main.inc.php');
 $expires = 60*60*24*3;
@@ -142,11 +142,11 @@ if($tmp_youtube) {
 }
 
 /*
-    Décode le code hexadecimal HTML en un tableau de valeurs Rouge, Vert et Bleu.
-    Accepte ces formats : (insensible à la casse) #ffffff, ffffff, #fff, fff
+    DÃ©code le code hexadecimal HTML en un tableau de valeurs Rouge, Vert et Bleu.
+    Accepte ces formats : (insensible Ã  la casse) #ffffff, ffffff, #fff, fff
 */
 function hex_to_rgb($hex) {
-	// enlève le '#'
+	// enlÃ¨ve le '#'
 	if (substr($hex, 0, 1) == '#')
 		$hex = substr($hex, 1);
 
@@ -170,7 +170,7 @@ function hex_to_rgb($hex) {
 }
 
 /*
-	Essais pour déterminer le nombre de pixels sous la baseline de cette police
+	Essais pour dÃ©terminer le nombre de pixels sous la baseline de cette police
 	pour cette taille
 */
 function get_dip($font, $size) {

@@ -1,4 +1,4 @@
-var _slide = false;
+﻿var _slide = false;
 var _opened = false;
 $(document).ready(function() {
 	var _prec_hash=false

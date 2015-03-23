@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 include "include/main.inc.php";
 if($Project = new Data('projects',$_GET['id_project'])) {
 

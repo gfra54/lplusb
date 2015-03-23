@@ -1,4 +1,4 @@
-$(document).ready(function() {
+﻿$(document).ready(function() {
 	$(".fancybox").fancybox();
 
     $( "#boxes" ).sortable({'stop':function(){}});
