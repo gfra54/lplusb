@@ -1,4 +1,6 @@
 <?php 
+
+
 include "include/main.inc.php";
 $GLOBALS['HOME']=true;
 
