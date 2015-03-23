@@ -24,18 +24,13 @@ showHeader(false,false,false,true);?>
 		} else {
 			$chapo = $proj->data['chapo'];
 		}
+		$mode = mode_image($main_image);
 	?>
-		<?php if($cpt == 9){?>
-			<hr><div class="wrap">
-		<?php } else if($cpt==13) {?>
-			</div>
-		<?php }?>
-		<a href="<?php echo $proj->url();?>" class="slidin <?php echo $cpt==13 ? 'big' : '';?> cell"><span class="text"><b><?php echo $proj->data['titre'];?></b><p><?php echo $chapo;?></p></span><img src="<?php echo Url::image($main_image,450);?>"></a>
-		<?php if($cpt == 13){?>
-			<hr>
-		<?php }?>
+		<a style="height:220px;width:<?php echo round(220*$mode['ratio']);?>px;" data-mode="<?php echo $mode['mode'];?>" data-ratio="<?php echo $mode['ratio'];?>" href="<?php echo $proj->url();?>" class="slidin cell"><span class="text"><span class="in"><b><?php echo $proj->data['titre'];?></b><p><?php echo $chapo;?></p></span></span><img src="<?php echo Url::image($main_image,450);?>"></a>
 
-	<?php }}?>
+	<?php 
+	
+	}}?>
 
 
 

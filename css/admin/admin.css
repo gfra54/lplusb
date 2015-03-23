@@ -20,7 +20,8 @@ body {
 }
 .admin_c2 {
 	float:left;
-	width:600px;
+	width:100%;
+	max-width:1000px;
 	padding:2px;
 }
 .admin_c3 {
@@ -127,6 +128,28 @@ li {
 }
 #boxes li {
 	cursor: move;
+	border: 1px dotted #ccc;
+	padding:2%;
+	background: white;
+}
+.box-in {
+	overflow: hidden;
+}
+
+.box-in .img, .box-text{
+	float: left;
+	width:49%;
+	margin:0; 
+}
+.box-in .img {
+	margin-right: 1%;
+	height: 124px;
+}
+.box-legende {
+	margin-top: 2%;
+}
+.box-legende INPUT {
+	width:100%;
 }
 .help {
 	padding:2px;

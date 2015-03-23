@@ -1,0 +1,131 @@
+@import "inc/base";
+
+#header {
+	padding:5%;
+	IMG {
+		width:100%;
+	}
+}
+@include rwd("tablet-small"){
+	#wrapper {
+		width:1155px;
+		margin:0 auto;
+		margin-top:25px;
+	}
+	#header {
+		padding:0;
+		height:100px;
+		IMG {
+			width:auto;
+		}
+	}
+	#nav {
+		float:left;
+		width:253px;
+		padding-right:22px;
+	}
+	.ligne {
+		margin-left:275px;
+		width:863px;
+		margin-bottom:30px;
+		border-top:1px dotted #444444;
+	}
+}
+#logo_baseline, #logo, #presentation {
+	display:block;
+	@include rwd("tablet-small"){
+		float:left;
+	}
+}
+
+@include rwd("tablet-small"){
+	#logo_baseline {
+		IMG {
+			width:246px
+		}
+	}
+}
+
+#presentation P{
+	padding:0;
+	margin:0;
+}
+#presentation {
+	margin-left:30px;
+}
+
+
+#nav A.selected{
+	color:#ccc;
+}
+
+
+#nav A{
+	display:block;
+	text-transform:uppercase;
+	line-height:1.8em;
+	padding: 2%;
+	@include rwd("tablet-small") {
+		padding:0;
+	}
+	&:hover{
+		text-decoration: none;
+		@include rwd("tablet-small") {
+			text-decoration: underline;
+		}
+	}
+}
+#nav A.main{
+	display:block;
+	background: #333;
+	color: white;
+	padding: 2%;
+	border-bottom: 2px solid #ccc;
+	cursor:pointer;
+	@include rwd("tablet-small") {
+		padding:0;
+		border-width:0px;
+		color:inherit;
+		background:transparent;
+		font-weight:bolder;
+	}
+}
+#nav .wrap{
+	overflow: hidden;
+}
+#nav .visible{
+	display: block;
+}
+#apropos {
+	position: fixed;
+	bottom:0;
+	width:100%;
+	text-align:center;
+	background:white;
+	padding:2%;
+	z-index:999;
+	A{
+		font-weight:bolder;
+		display: inline-block;
+		&:before{
+			content:' | ';
+			color:#ccc;
+		}
+		&:first-child:before{
+			content:'';
+		}
+	}
+	@include rwd("tablet-small") {
+		text-align:left;
+		position: relative;
+		background: none;
+		padding:0;
+		margin-top:70px;
+		A{
+			display: block;
+			&:before{
+				content:'';
+			}
+		}
+	}
+}

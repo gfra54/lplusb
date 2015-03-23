@@ -1,0 +1,32 @@
+@import "inc/base";
+ol,ul,li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;	
+	list-style: none;
+}
+body {
+	background-color:#f0f0f0;
+	color:#444444;
+	color:#231f20;
+	font-family:'akzidenz', sans-serif;
+	font-size:0.7em;
+	letter-spacing:0.15em;
+	-webkit-font-smoothing: antialiased;
+}
+
+A {
+	color:#444444;
+	color:#231f20;
+	text-decoration:none;
+}
+A:hover {
+	text-decoration:underline;
+}
+
+HR,.clear:after,.z:after{content:".";display:block !important;height:0;clear:both;visibility:hidden;margin:0;padding:0;border:none}HR,.clear,.z{display:inline-block}.hidden{visibility:hidden}* html .clear, * html HR, * html
+.z{height:1%}.clear,.z{display:block}
+

@@ -72,13 +72,19 @@
 											$order.=$Doc->basename().'|';
 											?>
 	                                        <li class="block left margin small" id="li_<?php echo $cpt;?>" file="<?php echo $Doc->basename();?>">
-	                                        <img src="<?php echo Url::image($Doc->path(),150,150);?>" align="left" class="img">
-	                                        <b><?php echo $Doc->shortName();?></b>
-	                                        <div><?php echo $Doc->type();?></div>
-	                                        <a href="javascript:delFichier(<?php echo $cpt;?>)"><img src="images/trash.gif"></a>
-	                                        <a href="<?php echo $Doc->url();?>" class="fancybox"><img src="images/eye.gif"></a>
-	                                        <a href="<?php echo Image::pixlrUrl($Doc->path());?>" <?php echo popOpen(800,600,'edit');?>><img src="images/edit.gif"></a>
+	                                        <div class="box-in">
+		                                        <img src="<?php echo Url::image($Doc->path(),150,150);?>" class="img">
+		                                        <div class="box-text">
+		                                        <b><?php echo $Doc->shortName();?></b>
+		                                        <div><?php echo $Doc->type();?></div>
+		                                        <a href="javascript:delFichier(<?php echo $cpt;?>)"><img src="images/trash.gif"></a>
+		                                        <a href="<?php echo $Doc->url();?>" class="fancybox"><img src="images/eye.gif"></a>
+		                                        <a href="<?php echo Image::pixlrUrl($Doc->path());?>" <?php echo popOpen(800,600,'edit');?>><img src="images/edit.gif"></a>
 												<input type="radio" name="form[main_image]" value="<?php echo $Doc->path();?>" <?php echo $Doc->path() == $Data->data['main_image'] ? 'checked' : '';?>>
+												</div>
+											</div>
+
+											<div class="box-legende"><input name="form[images][<?php echo $Doc->basename();?>]" value="<?php echo htmlentities($Doc->text);?>" placeholder="Légende de la photo" type="text"></div>
 	                                        </li>
 	                                <?php }?>
 	                        <?php }?>

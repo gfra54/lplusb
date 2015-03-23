@@ -1,3 +1,7 @@
+gen
 data
 IMG
 node_modules
+.sass-cache
+build/css
+build/js

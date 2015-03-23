@@ -1,30 +1,22 @@
-		function adjustLogo(etat) {
-			if(etat) {
-				g('float_logo').style.top=window.offsetHeight = window.scrollTop;
-			}
-			setTimeout('adjustLogo(true);',100);
-		
-		}
+/*        function adjustLogo(etat) {
+        	if(etat) {
+                	document.getElementById('float_logo').style.top=window.offsetHeight = window.scrollTop;
+        	}
+        	setTimeout('adjustLogo(true);',100);
 
-        var dragsort = ToolMan.dragsort()
-        var junkdrawer = ToolMan.junkdrawer()
- 
+        }
+
+    var dragsort = ToolMan.dragsort()
+    var junkdrawer = ToolMan.junkdrawer()
         window.onload = function() {
 //			adjustLogo();
 
-			if(g('boxes')) {
+			if(document.getElementById('boxes')) {
 	                junkdrawer.restoreListOrder("boxes");
         	        dragsort.makeListSortable(document.getElementById("boxes"),saveOrder);
 				}
         }
-        function verticalOnly(item) {
-                item.toolManDragGroup.verticalOnly()
-        }
  
-        function speak(id, what) {
-                var element = document.getElementById(id);
-                element.innerHTML = 'Clicked ' + what;
-        }
  
         function saveOrder(item) {
                 var group = item.toolManDragGroup
@@ -42,3 +34,4 @@
                 })
         }
 
+*/

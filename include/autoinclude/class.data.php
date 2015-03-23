@@ -182,9 +182,14 @@ Class Data{
 	function getDocs(){
 		if(!is_array($this->docs)){
 			$dir = $GLOBALS['chemin_site'].'data/'.$this->w.'/'.$this->id.'/';
-			$image_orders = explode('|',@file_get_contents($dir.'images_order.txt'));
+			if($images = @file_get_contents($dir.'images.json')){
+				$images = json_decode($images,true);
+			} else {
+				$images = array();
+			}
+//			$image_orders = explode('|',@file_get_contents($dir.'images_order.txt'));
 			$docs = array();
-			foreach($image_orders as $entry){
+			foreach($images as $entry =>$legend){
 				if(!empty($entry)) {
 					$docs[$entry]=$dir.($entry);
 				}
@@ -192,7 +197,7 @@ Class Data{
 			if($d = @dir($dir)) {
 				while (false !== ($entry = $d->read())) {
 					if(Image::isImage($entry)) {
-						$docs[$entry] = new File($dir.$entry);
+						$docs[$entry] = new File($dir.$entry,$images[$entry]);
 					}
 				}
 				$d->close();

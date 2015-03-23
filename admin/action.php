@@ -37,6 +37,7 @@ if(isset($_GET['vidercache'])) {
 Formulaire principal (enregistrement des données)
  */
 if(isset($_POST['form'])) {
+
         $form = $_POST['form'];
         $Object = new Data($w,$form['id'],'empty');
         $id = $form['id'];
@@ -74,7 +75,12 @@ if(isset($_POST['form'])) {
                         }
                 }
         }
-        file_put_contents($dir.'images_order.txt',$form['images_order']);
+
+
+        file_put_contents($dir.'images.json',json_encode($form['images']));
+        if(!empty($form['images_order'])) {
+	        file_put_contents($dir.'images_order.txt',$form['images_order']);
+	    }
 
 		Data::htaccessRebuild();
 

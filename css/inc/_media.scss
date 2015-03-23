@@ -1,0 +1,48 @@
+/**
+ * list of breakpoints
+ * 
+ */
+$breakpoints:(
+	"mobile-large" "38.75em",
+	"tablet-small" "46.25em",
+	"tablet-large" "55em",
+	"desktop-small" "59.6875em",
+	"desktop-medium" "68.75em",
+	"desktop-large" "77.5em",
+	"desktop-xlarge" "87.6875em"
+);
+
+$grid-breakpoints:(
+	"tablet-small" "46.25em",
+	"desktop-small" "59.6875em",
+);
+
+/**
+ * return media query according to breakpoint id
+ * @param  {str} $media breakpoint id
+ */
+@mixin rwd($media,$mode:"+") {
+
+	@if($media == "chrome") {
+		@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) { .selector { @content; } }
+	} @else {
+		@if($media == "webkit") {
+			@media screen and (-webkit-min-device-pixel-ratio:0) { @content; }
+		} @else {
+			@if($media == "default") {
+				@content;
+			} @else {
+				@each $i in $breakpoints{
+					@if $media == nth($i,1) {
+						@if($mode == "+") {
+						    @media only screen and (min-width: nth($i,2)) { @content; }
+						} @else {
+						    @media only screen and (max-width: nth($i,2)) { @content; }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+

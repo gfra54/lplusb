@@ -13,14 +13,9 @@ module.exports = function(grunt) {
       }
     },
     uglify: {
-      options: {
-        banner: '/'+'*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> *'+'/\n'
-      },
       build: {
           src: [
-            'wp-content/themes/society-magazine/js/skip-link-focus-fix.js',
-            'wp-content/plugins/society-magazine-plugin/js/*.js',
-            'wp-content/themes/society-magazine/js/functions.js',
+            'js/*.js',
           ],
         dest: 'build/global.<%= grunt.template.today("dd-mm-ss") %>.js'
       }
@@ -34,7 +29,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          src:['wp-content/themes/society-magazine/css/theme/*.scss'],
+          src:['css/*.scss'],
           dest: 'build/css/',
           ext:'.css',
           flatten : true
@@ -53,15 +48,10 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: [
-            '**/*.scss',
-            'wp-content/themes/society-magazine/css/fonts/*.css',
-            'wp-content/plugins/society-magazine-plugin/css/*.css',
-            'wp-content/themes/society-magazine/css/*/*.css',
-            'wp-content/themes/society-magazine/genericons/genericons.css',
-            'wp-content/plugins/simple-pull-quote/css/simple-pull-quote.css',
-            'wp-content/themes/society-magazine/js/skip-link-focus-fix.js',
-            'wp-content/plugins/society-magazine-plugin/js/*.js',
-            'wp-content/themes/society-magazine/js/*.js',
+            '*/*.css',
+            '*/*.scss',
+            '*/*/*.scss',
+            'js/*.js',
         ],
         tasks: ['clean:before','sass','copy:js','copy:css','copy:fonts','autoprefixer','bell'],
         options: {
@@ -74,7 +64,7 @@ module.exports = function(grunt) {
       prodfonts: {
         files: [
           {expand: true, src: [
-            'wp-content/themes/society-magazine/css/fonts/fonts/*.*',
+            'fonts/*.*',
           ], 
           dest: 'build/fonts/', 
           filter: 'isFile',
@@ -85,7 +75,7 @@ module.exports = function(grunt) {
       fonts: {
         files: [
           {expand: true, src: [
-            'wp-content/themes/society-magazine/css/fonts/fonts/*.*',
+            'fonts/*.*',
           ], 
           dest: 'build/css/fonts/', 
           filter: 'isFile',
@@ -96,10 +86,10 @@ module.exports = function(grunt) {
       js: {
         files: [
           {expand: true, src: [
-            'wp-content/themes/society-magazine/js/skip-link-focus-fix.js',
-            'wp-content/plugins/society-magazine-plugin/js/*.js',
-            'wp-content/themes/society-magazine/js/functions.js',
-            'wp-content/themes/society-magazine/js/*.js',
+            'js/*.js',
+            'js/tool-man/*.js',
+            // 'fancybox/*.js',
+            // 'fancybox/helpers/*.js',
           ], 
           dest: 'build/js/', 
           filter: 'isFile',
@@ -110,9 +100,7 @@ module.exports = function(grunt) {
       css: {
         files: [
           {expand: true, src: [
-            'wp-content/themes/society-magazine/css/*/*.css',
-            'wp-content/themes/society-magazine/genericons/genericons.css',
-            'wp-content/plugins/simple-pull-quote/css/simple-pull-quote.css',
+            'css/*.css',
           ], 
           dest: 'build/css/', 
           filter: 'isFile',
@@ -129,9 +117,7 @@ module.exports = function(grunt) {
       },
       js: {
           src: [
-            'wp-content/themes/society-magazine/js/skip-link-focus-fix.js',
-            'wp-content/plugins/society-magazine-plugin/js/*.js',
-            'wp-content/themes/society-magazine/js/functions.js',
+            'js/*.js',
           ],
           dest: 'build/global.<%= grunt.template.today("dd-mm-ss") %>.js'
       },
