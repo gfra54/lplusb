@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 ini_set('memory_limit', '2G');
 include('include/main.inc.php');
 $expires = 60*60*24*3;
@@ -21,6 +21,7 @@ $i = isset ($_GET['i']) ? $_GET['i']: false;
 $tmp_youtube=false;
 // Gestion d'images
 if ($i) {
+
 		$source = Url::fromUrl($i);
 
 		$largeur_max = $_GET['x'];
@@ -31,36 +32,34 @@ if ($i) {
 			exit;
 
 		if(strstr($_SERVER['REQUEST_URI'],'/img-')!==false) {
-			if (!is_dir($GLOBALS['chemin_site']."IMG/")){
+/*			if (!is_dir($GLOBALS['chemin_site']."IMG/")){
 				@mkdir($GLOBALS['chemin_site']."IMG/",0777);
-			}
-
-			$cle = 'IMG/'.basename($_SERVER['REQUEST_URI']);
+			}*/
+			$uri = basename($_SERVER['REQUEST_URI']);
+			list($uri) = explode('?',$uri);
+			$cle = 'IMG/'.$uri;
 		} else {
-			if (!is_dir("CACHE/IMG/")){
+/*			if (!is_dir("CACHE/IMG/")){
 				@mkdir("CACHE",0777);
 				@mkdir("CACHE/IMG/",0777);
-			}
+			}*/
 
 			$cle = "CACHE/IMG/" . @filemtime($source) . md5(@filesize($source) . $source . $largeur_max . $hauteur_max . $cut . $gif. $alpha. $noborder);
 		}
-
+	
 		$IF = new Image;
 
 		$cache = false;
 		if (!$nocache && file_exists($cle)) {
 			$cache = true;
-			//		$_t = filemtime($cle);
-			//		$delta = time() - $_t;
 		}
-
 		if ($cache) {
 			$IF->loadImage($cle);
 		} else {
 			$size = getimagesize($source);
 			$largeur_src = $size[0];
 			$hauteur_src = $size[1];
-			ini_set("memory_limit","16M");
+//			ini_set("memory_limit","16M");
 			//2ieme verification -> on verifie que le type du fichier est un jpg, jpeg ou gif
 			// $size[2] -> type de l'image : 1 = GIF , 2 = JPG, JPEG
 			if ($size[2] != 1 AND $size[2] != 2 AND $size[2] != 3) {
@@ -134,51 +133,10 @@ if ($i) {
 			$IF->output($type, $cle,NULL,$compression);
 		}
 		//header('Cache-Control: max-age=36000');
-		$IF->output($type,NULL,NULL,$compression);
-
+//		$IF->output($type,NULL,NULL,$compression);
+		header('location: '.$GLOBALS['url_site'].$cle);
 }
 if($tmp_youtube) {
 	unlink($tmp_youtube);
-}
-
-/*
-    Décode le code hexadecimal HTML en un tableau de valeurs Rouge, Vert et Bleu.
-    Accepte ces formats : (insensible à la casse) #ffffff, ffffff, #fff, fff
-*/
-function hex_to_rgb($hex) {
-	// enlève le '#'
-	if (substr($hex, 0, 1) == '#')
-		$hex = substr($hex, 1);
-
-	// expansion de la forme raccourcie ('fff') de la couleur
-	if (strlen($hex) == 3) {
-		$hex = substr($hex, 0, 1) . substr($hex, 0, 1) .
-		substr($hex, 1, 1) . substr($hex, 1, 1) .
-		substr($hex, 2, 1) . substr($hex, 2, 1);
-	}
-
-	if (strlen($hex) != 6)
-		die('Error: Couleur invalide "' .
-		$hex . '"');
-
-	// conversion
-	$rgb['red'] = hexdec(substr($hex, 0, 2));
-	$rgb['green'] = hexdec(substr($hex, 2, 2));
-	$rgb['blue'] = hexdec(substr($hex, 4, 2));
-
-	return $rgb;
-}
-
-/*
-	Essais pour déterminer le nombre de pixels sous la baseline de cette police
-	pour cette taille
-*/
-function get_dip($font, $size) {
-	$test_chars = 'abcdefghijklmnopqrstuvwxyz' .
-	'ABCDEFGHIJKLMNOPQRSTUVWXYZ' .
-	'1234567890' .
-	'!@#$%^&*()\'"\\/;.,`~<>[]{}-+_-=';
-	$box = @ ImageTTFBBox($size, 0, $font, $test_chars);
-	return $box[3];
 }
 

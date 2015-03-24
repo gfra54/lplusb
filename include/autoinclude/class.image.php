@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /* Class ImageFilter */
 
 /**
@@ -180,15 +180,15 @@ class Image
             {
                 case 'PNG' :
                     header ('Content-type: image/png');
-                    @imagepng($this->resourceImage);
+                    imagepng($this->resourceImage);
                     return true;
                 case 'JPEG' :
                     header ('Content-type: image/jpeg');
-                    @imagejpeg($this->resourceImage,NULL,$JPG_Q);
+                    imagejpeg($this->resourceImage,NULL,$JPG_Q);
                     return true;
                 case 'GIF' :
                     header ('Content-type: image/gif');
-                    @imagegif($this->resourceImage);
+                    imagegif($this->resourceImage);
                     return true;
                 default :
                     return false;
@@ -201,11 +201,11 @@ class Image
                 switch($type)
                 {
                     case 'PNG' :
-                        return imagepng($this->resourceImage,$file);
+                        return @imagepng($this->resourceImage,$file);
                     case 'JPEG' :
-                        return imagejpeg($this->resourceImage,$file,$JPG_Q);
+                        return @imagejpeg($this->resourceImage,$file,$JPG_Q);
                     case 'GIF' :
-                        return imagegif($this->resourceImage,$file);
+                        return @imagegif($this->resourceImage,$file);
                     default :
                         return false;
                 }

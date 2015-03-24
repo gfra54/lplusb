@@ -50,7 +50,7 @@ if(!$ajax) {
 	<?php include_css();?>
 	<?php showOGImage($main_image);?>
 	<?php canonical($GLOBALS['CANONICAL']);?>
-
+	<script>document.write('<style>#content {opacity:0;}</style>');</script>
 </head>
 <body <?php echo $GLOBALS['HOME'] ? 'id="home"' : '';?>>
 <?php }?>

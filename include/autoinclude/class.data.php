@@ -158,8 +158,8 @@ Class Data{
 	 */
 	function getLogo($w=false,$h=false){
 		if($this->getSpec('docs')){
-			if(isset($this->data['main_image'])){
-				return str_replace($GLOBALS['chemin_site'],'',$this->data['main_image']);
+			if($this->mainImage()){
+				return $this->mainImage();
 			} else {
 				$docs = $this->getDocs();
 				foreach($docs as $doc){
@@ -176,12 +176,42 @@ Class Data{
 		return false;
 	}
 	/**
+	 * get doc path
+	 */
+	
+	function docPath(){
+		$dir = $GLOBALS['chemin_site'].'data/'.$this->w.'/'.$this->id.'/';
+		return $dir;
+	}
+
+	function isMainImage($file){
+		return $this->data['main_image'] == $file ? $this->mainImage($set=false) : false;
+	}
+	function mainImage($set=false) {
+		if($set) {
+			$this->data['main_image'] = $set;	
+		} else {
+			if($this->data['main_image']) {
+				$file = $this->docPath().$this->data['main_image'];
+				if(file_exists($file)) {
+					return $file;
+				} else {
+					$this->data['main_image']=false;
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+	}
+
+	/**
 	 * Get all documents attached to the item
 	 * @return array()
 	 */
 	function getDocs(){
 		if(!is_array($this->docs)){
-			$dir = $GLOBALS['chemin_site'].'data/'.$this->w.'/'.$this->id.'/';
+			$dir = $this->docPath();
 			if($images = @file_get_contents($dir.'images.json')){
 				$images = json_decode($images,true);
 			} else {

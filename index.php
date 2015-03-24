@@ -36,7 +36,7 @@ showHeader(false,false,false,true);?>
 		}
 		$mode = mode_image($main_image);
 	?>
-		<a style="height:<?php echo $GLOBALS['MIN_CELL_HEIGHT'];?>px;width:<?php echo round($GLOBALS['MIN_CELL_HEIGHT']*$mode['ratio']);?>px;" data-mode="<?php echo $mode['mode'];?>" data-ratio="<?php echo $mode['ratio'];?>" href="<?php echo $proj->url();?>" class="slidin cell"><span class="text"><span class="in"><b><?php echo $proj->data['titre'];?></b><p><?php echo $chapo;?></p></span></span><img src="<?php echo Url::image($main_image,450);?>"></a>
+		<a style="height:<?php echo $GLOBALS['MIN_CELL_HEIGHT'];?>px;width:<?php echo round($GLOBALS['MIN_CELL_HEIGHT']*$mode['ratio']);?>px;" data-mode="<?php echo $mode['mode'];?>" data-ratio="<?php echo $mode['ratio'];?>" href="<?php echo $proj->url();?>" class="slidin cell"><span class="text"><span class="in"><b><?php echo $proj->data['titre'];?></b><p><?php echo $chapo;?></p></span></span><img src="<?php echo Url::image($main_image,300);?>"></a>
 
 	<?php 
 	
