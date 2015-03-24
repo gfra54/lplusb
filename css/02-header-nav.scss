@@ -6,9 +6,53 @@
 		width:100%;
 	}
 }
+#nav {
+	A{
+		display:block;
+		text-transform:uppercase;
+		line-height:1.8em;
+		padding: 2%;
+		@include rwd("tablet-small") {
+			padding:0;
+		}
+		&:hover{
+			text-decoration: none;
+			@include rwd("tablet-small") {
+				text-decoration: underline;
+			}
+		}
+	}	
+	A.selected{
+		color:#ccc;
+	}
+
+
+	A.main{
+		display:block;
+		background: #333;
+		color: white;
+		padding: 2%;
+		border-bottom: 2px solid #ccc;
+		cursor:pointer;
+		@include rwd("tablet-small") {
+			padding:0;
+			border-width:0px;
+			color:inherit;
+			background:transparent;
+			font-weight:bolder;
+		}
+	}
+	.wrap{
+		overflow: hidden;
+	}
+	.visible{
+		display: block;
+	}	
+}
 @include rwd("tablet-small"){
 	#wrapper {
-		width:1155px;
+		max-width: 1155px;
+		width: 100%;
 		margin:0 auto;
 		margin-top:25px;
 	}
@@ -19,18 +63,40 @@
 			width:auto;
 		}
 	}
+	#contentWrap {
+		padding-left: 275px;
+		position:relative;
+	}
 	#nav {
-		float:left;
-		width:253px;
+		width:203px;
 		padding-right:22px;
+		position:absolute;
+		top:0;
+		left:0;
+		A {
+			font-size:11px;
+		}
 	}
 	.ligne {
-		margin-left:275px;
-		width:863px;
-		margin-bottom:30px;
-		border-top:1px dotted #444444;
+		border-bottom:1px dotted #333;
+		margin-top: 10px;
+		margin-bottom: 20px;
 	}
 }
+@include rwd("desktop-small"){
+	#contentWrap {
+		padding-left: 275px;
+	}
+	#nav {
+		width:253px;
+		padding-right:22px;
+		A {
+			font-size:12px;
+		}
+	}
+}
+
+
 #logo_baseline, #logo, #presentation {
 	display:block;
 	@include rwd("tablet-small"){
@@ -55,77 +121,3 @@
 }
 
 
-#nav A.selected{
-	color:#ccc;
-}
-
-
-#nav A{
-	display:block;
-	text-transform:uppercase;
-	line-height:1.8em;
-	padding: 2%;
-	@include rwd("tablet-small") {
-		padding:0;
-	}
-	&:hover{
-		text-decoration: none;
-		@include rwd("tablet-small") {
-			text-decoration: underline;
-		}
-	}
-}
-#nav A.main{
-	display:block;
-	background: #333;
-	color: white;
-	padding: 2%;
-	border-bottom: 2px solid #ccc;
-	cursor:pointer;
-	@include rwd("tablet-small") {
-		padding:0;
-		border-width:0px;
-		color:inherit;
-		background:transparent;
-		font-weight:bolder;
-	}
-}
-#nav .wrap{
-	overflow: hidden;
-}
-#nav .visible{
-	display: block;
-}
-#apropos {
-	position: fixed;
-	bottom:0;
-	width:100%;
-	text-align:center;
-	background:white;
-	padding:2%;
-	z-index:999;
-	A{
-		font-weight:bolder;
-		display: inline-block;
-		&:before{
-			content:' | ';
-			color:#ccc;
-		}
-		&:first-child:before{
-			content:'';
-		}
-	}
-	@include rwd("tablet-small") {
-		text-align:left;
-		position: relative;
-		background: none;
-		padding:0;
-		margin-top:70px;
-		A{
-			display: block;
-			&:before{
-				content:'';
-			}
-		}
-	}
-}

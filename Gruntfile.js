@@ -64,9 +64,9 @@
       prodfonts: {
         files: [
           {expand: true, src: [
-            'fonts/*.*',
+            'font/*.*',
           ], 
-          dest: 'build/fonts/', 
+          dest: 'build/font/', 
           filter: 'isFile',
           flatten : true
           },
@@ -75,9 +75,9 @@
       fonts: {
         files: [
           {expand: true, src: [
-            'fonts/*.*',
+            'font/*.*',
           ], 
-          dest: 'build/css/fonts/', 
+          dest: 'build/css/font/', 
           filter: 'isFile',
           flatten : true
           },

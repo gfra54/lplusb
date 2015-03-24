@@ -15,7 +15,16 @@ $(document).ready(function() {
 			// console.log($('#slider').width())
 			$('#slider').attr('data-moving',1);
 			$('#slider').attr('data-rang',_new_rang);
+
+			$('.legende').addClass('legende-hidden');
+
+			if($('.legende-'+_new_rang).length) {
+				$('.legende-'+_new_rang).removeClass('legende-hidden');
+			} else {
+				$('.legende-0').removeClass('legende-hidden');
+			}
 			$('#slider #zone #sliding').stop().animate({'margin-left':_ml},1000,function(){
+				$('#description .count').html($('#slider').attr('data-rang')+'/'+$('#slider .slide').length);
 				$('#slider').attr('data-moving',0);
 				if(_opened) {
 					_opened=false;
@@ -40,9 +49,19 @@ $(document).ready(function() {
 
 	$('#slider').attr('data-rang',1).attr('data-moving',0);
 
+	$('#slider').on('flick', function(e) {
+	    if ('horizontal' == e.orientation) {
+	        if (1 == e.direction) {
+				$('#slider #next').click();
+	        } else {
+				$('#slider #prev').click();
+	        }
+	    }
+	});
+
 	$('#slider #prev').click(function(){
 		var _rang = Number($('#slider').attr('data-rang'))-1;
-		console.log(_rang)
+		// console.log(_rang)
 		if(_rang>0){
 			$('#slider').attr('data-rang',_rang);
 			document.location.hash=_rang == 1 ? '' : '#i'+_rang;
@@ -50,7 +69,7 @@ $(document).ready(function() {
 	});
 	$('#slider #next').click(function(){
 		var _rang = Number($('#slider').attr('data-rang'))+1;
-		console.log(_rang)
+		// console.log(_rang)
 		if(_rang<=$('#slider .slide').length){
 			$('#slider').attr('data-rang',_rang);
 

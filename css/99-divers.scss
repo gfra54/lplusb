@@ -1,5 +1,41 @@
 ﻿@import "inc/base";
 
+#apropos {
+    position: fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    text-align:center;
+    background:white;
+    padding:2%;
+    z-index:999;
+    A{
+        font-weight:bolder;
+        display: inline-block;
+        &:before{
+            content:' | ';
+            color:#ccc;
+        }
+        &:first-child:before{
+            content:'';
+        }
+    }
+    @include rwd("tablet-small") {
+        text-align:left;
+        position: relative;
+        background: none;
+        padding:0;
+        margin-top:70px;
+        A{
+            display: block;
+            &:before{
+                content:'';
+            }
+        }
+    }
+}
+
+
 #fond{
 	z-index:99;
 /*	-webkit-filter: blur(3px);

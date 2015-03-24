@@ -84,7 +84,7 @@
 												</div>
 											</div>
 
-											<div class="box-legende"><input name="form[images][<?php echo $Doc->basename();?>]" value="<?php echo htmlspecialchars($Doc->text);?>" placeholder="Légende de la photo" type="text"></div>
+											<div class="box-legende"><input name="form[images][<?php echo $Doc->basename();?>]" tabindex="<?php echo $cpt;?>" value="<?php echo htmlspecialchars($Doc->text);?>" placeholder="Légende de la photo" type="text"></div>
 	                                        </li>
 	                                <?php }?>
 	                        <?php }?>

@@ -25,7 +25,7 @@
 		height: 100%;
 		z-index: 1;
 	}
-	&:before,.text{
+	.text{
 		content:'';
 		display: block;
 		position: absolute;
@@ -43,7 +43,7 @@
 		z-index: 2;
 	}
 	&:hover {
-		&:before, .text{
+		.text{
 			opacity: 1;
 			background-color: rgba(0,0,0,0.8);
 		}
