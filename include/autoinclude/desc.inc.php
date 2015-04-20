@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $GLOBALS['DESC']= array();
 $GLOBALS['DESC']['users'] = array(
 	'login' => array(

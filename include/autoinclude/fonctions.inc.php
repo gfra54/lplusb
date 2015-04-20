@@ -1,4 +1,4 @@
-<?php
+ο»Ώ<?php
 $GLO_COULEURS = array(
 	'#333'=>array('lib'=>'Noir','color'=>'#fff','image'=>'logo_noir','fond'=>'fond-menu-blanc'),
 //	'#ccc'=>array('lib'=>'Gris clair','color'=>'#000','image'=>'logo_gc'),
@@ -456,7 +456,7 @@ function confirmLink(){
 }
 
 function stripAccents($string){
-	return strtr($string,'ΰαβγδηθικλμνξορςστυφωϊϋόύÿΐΑΒΓΔΗΘΙΚΛΜΝΞΟΡÒΣΤΥΦΩΪΫάέ',
+	return strtr($string,'Γ Γ΅ΓΆΓ£Γ¤Γ§Γ¨Γ©ΓªΓ«Γ¬Γ­Γ®Γ―Γ±Γ²Γ³Γ΄ΓµΓ¶ΓΉΓΊΓ»ΓΌΓ½ΓΏΓ€ΓΓ‚ΓƒΓ„Γ‡ΓΓ‰ΓΓ‹ΓΓΓΓΓ‘Γ’Γ“Γ”Γ•Γ–Γ™ΓΓ›ΓΓ',
 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 }
 

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $GLO_LANG=array();
 $GLO_DEFAULT_LANG='fr';
 $GLO_LANGUES = array('fr'=>'Fran&ccedil;ais', 'en'=>'English');

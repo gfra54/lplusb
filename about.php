@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 include "include/main.inc.php";
 
 $id_data = isset($_GET['id_data']) ? $_GET['id_data'] : 5;

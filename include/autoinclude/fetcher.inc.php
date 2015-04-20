@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $id_data = isset($_GET['id_data']) ? $_GET['id_data'] : false;
 
 function getPhotos($debut=0,$nb=false,$exclude=false) {

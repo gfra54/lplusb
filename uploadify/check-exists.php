@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
 Uploadify
 Copyright (c) 2012 Reactive Apps, Ronnie Garcia

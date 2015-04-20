@@ -1,9 +1,11 @@
-<?php
+﻿<?php
 Class File{
 	var $f;
 	var $ext;
-	function __construct($f=false){
+	var $text;
+	function __construct($f=false,$text=false){
 		$this->f = $f;
+		$this->text=$text;
 		$this->ext=false;
 	}
 	function ext(){

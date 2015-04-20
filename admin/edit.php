@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 		$Data = new Data($w,$id);
         ?>
         <form id="form_upload" action="admin.php?w=<?php echo $w;?>" method="post" enctype="multipart/form-data">
@@ -33,8 +33,8 @@
 			<?php if(isset($Data->data['main_image'])){?>
 		        <div class="admin_c1">Vignette principale</div>
 		        <div class="admin_c2">
-				<?php if(file_exists($Data->data['main_image'])){?>	
-					<img src="<?php echo Url::image($Data->data['main_image'],100,100);?>">
+				<?php if($Data->mainImage()){?>
+					<img src="<?php echo Url::image($Data->mainImage(),100,100);?>">
 				<?php }?>
 				</div>
 			<?php }?>
@@ -68,17 +68,25 @@
 	                        $cpt=0;
 	                        foreach($Data->getDocs() as $idx=>$Doc) {$cpt++;?>
 	                                <?php if($Doc->is('image')) {
-											$Data->data['main_image'] = !isset($Data->data['main_image']) ? $Doc->path() : $Data->data['main_image'];
-											$order.=$Doc->basename().'|';
+											if(!$Data->mainImage()) {
+												$Data->mainImage($Doc->basename());
+											}
+//											$order.=$Doc->basename().'|';
 											?>
 	                                        <li class="block left margin small" id="li_<?php echo $cpt;?>" file="<?php echo $Doc->basename();?>">
-	                                        <img src="<?php echo Url::image($Doc->path(),150,150);?>" align="left" class="img">
-	                                        <b><?php echo $Doc->shortName();?></b>
-	                                        <div><?php echo $Doc->type();?></div>
-	                                        <a href="javascript:delFichier(<?php echo $cpt;?>)"><img src="images/trash.gif"></a>
-	                                        <a href="<?php echo $Doc->url();?>" class="fancybox"><img src="images/eye.gif"></a>
-	                                        <a href="<?php echo Image::pixlrUrl($Doc->path());?>" <?php echo popOpen(800,600,'edit');?>><img src="images/edit.gif"></a>
-												<input type="radio" name="form[main_image]" value="<?php echo $Doc->path();?>" <?php echo $Doc->path() == $Data->data['main_image'] ? 'checked' : '';?>>
+	                                        <div class="box-in">
+		                                        <img src="<?php echo Url::image($Doc->path(),150,150);?>" class="img">
+		                                        <div class="box-text">
+		                                        <b><?php echo $Doc->shortName();?></b>
+		                                        <div><?php echo $Doc->type();?></div>
+		                                        <a href="javascript:delFichier(<?php echo $cpt;?>)"><img src="images/trash.gif"></a>
+		                                        <a href="<?php echo $Doc->url();?>" class="fancybox"><img src="images/eye.gif"></a>
+		                                        <a href="<?php echo Image::pixlrUrl($Doc->path());?>" <?php echo popOpen(800,600,'edit');?>><img src="images/edit.gif"></a>
+												<input type="radio" name="form[main_image]" value="<?php echo $Doc->basename();?>" <?php echo $Data->isMainImage($Doc->basename()) ? 'checked' : '';?>>
+												</div>
+											</div>
+
+											<div class="box-legende"><input name="form[images][<?php echo $Doc->basename();?>]" tabindex="<?php echo $cpt;?>" value="<?php echo htmlspecialchars($Doc->text);?>" placeholder="Légende de la photo" type="text"></div>
 	                                        </li>
 	                                <?php }?>
 	                        <?php }?>

@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 
 $tab_toolbar = array(
 	'Titre'=>'h2',	
@@ -32,21 +32,23 @@ function showToolBar($id_cible) {
 function showHeaderAdmin($titre=false,$extra=false) {
 	$headerSent=true;
 ?>
-<!DOCTYPE html>
-<html>
+
+<html lang="fr-FR" class="no-js">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
 <title><?php echo $titre ? $titre : 'Admin';?></title>
 <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="css/admin.css"/>
+<link rel="stylesheet" type="text/css" href="css/admin/admin.css"/>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/admin.js"></script>
-<script type="text/javascript" src="js/toolbar.js"></script>
+<script type="text/javascript" src="js/admin/admin.js"></script>
+<script type="text/javascript" src="js/admin/toolbar.js"></script>
 <script type="text/javascript" src="uploadify/jquery.uploadify.min.js"></script>
 <link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" />
 
 <script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.6.pack.js"></script>
 <link rel="stylesheet" href="fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script type="text/javascript" src="fancybox/jquery.fancybox.js?v=2.1.5"></script>
 
 <!-- Optionally add helpers - button, thumbnail and/or media -->
 <link rel="stylesheet" href="fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
@@ -57,15 +59,9 @@ function showHeaderAdmin($titre=false,$extra=false) {
 <script type="text/javascript" src="fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
 <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
-<script language="JavaScript" type="text/javascript" src="js/tool-man/core.js"></script>
-<script language="JavaScript" type="text/javascript" src="js/tool-man/events.js"></script>
-<script language="JavaScript" type="text/javascript" src="js/tool-man/css.js"></script>
+<?php include_js('js/tool-man/*');?>
 
-<script language="JavaScript" type="text/javascript" src="js/tool-man/coordinates.js"></script>
-<script language="JavaScript" type="text/javascript" src="js/tool-man/drag.js"></script>
-<script language="JavaScript" type="text/javascript" src="js/tool-man/dragsort.js"></script>
-<script language="JavaScript" type="text/javascript" src="js/tool-man/cookies.js"></script>
-<script language="JavaScript" type="text/javascript" src="js/dodrag.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/admin/dodrag.js"></script>
 
 
 </head>

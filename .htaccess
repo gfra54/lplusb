@@ -1,6 +1,6 @@
 RewriteEngine on
 
-RewriteBase /lplusb/
+#RewriteBase /lplusb/
 
 #RewriteCond %{HTTP_HOST} !^localhost$ [NC]
 #RewriteCond %{HTTP_HOST} !^www.lplusb.com$ [NC]
@@ -27,13 +27,22 @@ RewriteRule   ^IMG/img-([^-]*)-([^-]*)-([^-]*)-(.*)						img.php?i=$4&x=$1&y=$2&
 RewriteRule   ^a-propos.html$						page.php?id=1  [L,QSA]
 RewriteRule   ^savoir-faire.html$						page.php?id=2  [L,QSA]
 RewriteRule   ^contact.html$						page.php?id=3  [L,QSA]
-RewriteRule   ^catherine-andre.html$								projects.php?id_project=9  [L,QSA]
-RewriteRule   ^le-beau-pour-tous.html$								projects.php?id_project=8  [L,QSA]
-RewriteRule   ^bartabas.html$								projects.php?id_project=7  [L,QSA]
-RewriteRule   ^hermes.html$								projects.php?id_project=6  [L,QSA]
+RewriteRule   ^hermes.html$								projects.php?id_project=22  [L,QSA]
+RewriteRule   ^modzik.html$								projects.php?id_project=15  [L,QSA]
+RewriteRule   ^so-foot-junior.html$								projects.php?id_project=12  [L,QSA]
+RewriteRule   ^sanfermin.html$								projects.php?id_project=21  [L,QSA]
 RewriteRule   ^sureshot-brothers.html$								projects.php?id_project=5  [L,QSA]
-RewriteRule   ^modzik.html$								projects.php?id_project=4  [L,QSA]
+RewriteRule   ^modzik-2010-2014.html$								projects.php?id_project=4  [L,QSA]
+RewriteRule   ^institut-ophtalmologique-de-picardie.html$								projects.php?id_project=13  [L,QSA]
+RewriteRule   ^figures-zlatan.html$								projects.php?id_project=16  [L,QSA]
 RewriteRule   ^logos.html$								projects.php?id_project=3  [L,QSA]
-RewriteRule   ^henry-mazelier.html$								projects.php?id_project=1  [L,QSA]
-RewriteRule   ^24h-chrono.html$								projects.php?id_project=2  [L,QSA]
+RewriteRule   ^scratch-graphique.html$								projects.php?id_project=17  [L,QSA]
+RewriteRule   ^le-beau-pour-tous.html$								projects.php?id_project=8  [L,QSA]
+RewriteRule   ^cedric-ragot.html$								projects.php?id_project=20  [L,QSA]
 RewriteRule   ^theatre-national-de-bretagne.html$								projects.php?id_project=10  [L,QSA]
+RewriteRule   ^24h-chrono.html$								projects.php?id_project=2  [L,QSA]
+RewriteRule   ^nova-press.html$								projects.php?id_project=19  [L,QSA]
+RewriteRule   ^sofilms.html$								projects.php?id_project=14  [L,QSA]
+RewriteRule   ^bartabase.html$								projects.php?id_project=18  [L,QSA]
+RewriteRule   ^henry-mazelier.html$								projects.php?id_project=1  [L,QSA]
+RewriteRule   ^catherine-andre.html$								projects.php?id_project=9  [L,QSA]

@@ -1,0 +1,127 @@
+﻿@import "inc/base";
+
+#header {
+	padding:5%;
+	IMG {
+		width:100%;
+	}
+}
+#nav {
+	A{
+		display:block;
+		text-transform:uppercase;
+		line-height:1.8em;
+		padding: 2%;
+		@include rwd("tablet-small") {
+			padding:0;
+		}
+		&:hover{
+			text-decoration: none;
+			@include rwd("tablet-small") {
+				text-decoration: underline;
+			}
+		}
+	}	
+	A.selected{
+		color:#ccc;
+	}
+
+
+	A.main{
+		display:block;
+		background: #333;
+		color: white;
+		padding: 2%;
+		border-bottom: 2px solid #ccc;
+		cursor:pointer;
+		@include rwd("tablet-small") {
+			padding:0;
+			border-width:0px;
+			color:inherit;
+			background:transparent;
+			font-weight:bolder;
+		}
+	}
+	.wrap{
+		overflow: hidden;
+	}
+	.visible{
+		display: block;
+	}	
+}
+@include rwd("tablet-small"){
+	#wrapper {
+		max-width: 1155px;
+		width: 100%;
+		margin:0 auto;
+		margin-top:25px;
+	}
+	#header {
+		padding:0;
+		height:100px;
+		IMG {
+			width:auto;
+		}
+	}
+	#contentWrap {
+		padding-left: 275px;
+		position:relative;
+	}
+	#nav {
+		width:203px;
+		padding-right:22px;
+		position:absolute;
+		top:0;
+		left:0;
+		A {
+			font-size:11px;
+		}
+	}
+	.ligne {
+		border-bottom:1px dotted #333;
+		margin-top: 10px;
+		margin-bottom: 40px;
+	}
+}
+@include rwd("desktop-small"){
+	#contentWrap {
+		padding-left: 275px;
+	}
+	#nav {
+		width:253px;
+		padding-right:22px;
+		A {
+			font-size:12px;
+		}
+	}
+}
+@include rwd("desktop-small"){
+	#wrapper {
+		max-width: 1500px;
+	}
+}
+
+#logo_baseline, #logo, #presentation {
+	display:block;
+	@include rwd("tablet-small"){
+		float:left;
+	}
+}
+
+@include rwd("tablet-small"){
+	#logo_baseline {
+		IMG {
+			width:260px
+		}
+	}
+}
+
+#presentation P{
+	padding:0;
+	margin:0;
+}
+#presentation {
+	margin-left:30px;
+}
+
+

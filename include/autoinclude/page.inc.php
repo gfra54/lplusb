@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 function setMeta($w,$data){
 	if($data) {
@@ -37,6 +37,8 @@ if(!$ajax) {
 ?>
 <!doctype html>
 <html lang="fr-FR">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
 <head>
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -45,22 +47,17 @@ if(!$ajax) {
 	<meta name="description" content="<?php echo strip_tags($desc ? $desc : getSetting('desc_site'));?>" />
 	<meta name="keywords" content="<?php echo strip_tags($keywords ? $keywords : getSetting('keywords'));?>" />
 	<?php echo $compat;?>
-	<!-- <link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'> -->
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script-->
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
-	<script type="text/javascript" src="js/scripts.js"></script>
+	<?php include_css();?>
 	<?php showOGImage($main_image);?>
 	<?php canonical($GLOBALS['CANONICAL']);?>
-
+	<script>//document.write('<style>#content {opacity:0;}</style>');</script>
 </head>
 <body <?php echo $GLOBALS['HOME'] ? 'id="home"' : '';?>>
 <?php }?>
 
 <div id="wrapper">
 	<div id="header">
-		<a href="<?php echo $GLOBALS['url_site'];?>" id="logo_baseline"><img src="images/logo_baseline.png"></a>
+		<a href="<?php echo $GLOBALS['url_site'];?>" id="logo_baseline"><img src="images/logo.svg"></a>
 		<hr>
 	</div>
 	<div class="ligne"></div>
@@ -123,6 +120,12 @@ function showFooter($home=false) {
 </body>
 </html>
 <?php
+	include_js();
+	if(ENV == 'DEV') {
+		?><style>body:before{display:block;}</style><?php
+	} else {
+		?><style>body:before{display:none;}</style><?php
+	}
 }
 }
 

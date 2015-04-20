@@ -1,6 +1,6 @@
 RewriteEngine on
 
-RewriteBase %root%
+#RewriteBase %root%
 
 #RewriteCond %{HTTP_HOST} !^127.0.0.1$ [NC]
 #RewriteCond %{HTTP_HOST} !^www.lplusb.com$ [NC]

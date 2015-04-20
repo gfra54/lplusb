@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 include "include/main.inc.php";
 //		print_r($_GET);
 switch($_GET['action']){

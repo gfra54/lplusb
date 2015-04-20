@@ -1,0 +1,45 @@
+﻿@mixin easing($name){
+  @if($name == 'easeInBack'){
+    transition: all 500ms cubic-bezier(0.600, -0.280, 0.735, 0.045);
+    transition-timing-function: cubic-bezier(0.600, -0.280, 0.735, 0.045); 
+  }
+  @if($name == 'easeOutBounce'){
+    transition: all 500ms cubic-bezier(1.000, 1.650, 0.355, 0.605);
+    transition-timing-function: cubic-bezier(1.000, 1.650, 0.355, 0.605);
+  }
+}
+
+
+
+
+
+/**
+ * generation de gradients css
+ * @param  {[type]} $from   [description]
+ * @param  {[type]} $to     [description]
+ * @param  {[type]} $start: 0%            [description]
+ * @param  {[type]} $stop:  100%          [description]
+ * @return {[type]}         [description]
+ */
+@mixin horizontal-gradient($from, $to, $start: 0%, $stop: 100%) {
+  /* Firefox 3.6+ */
+  background-image: -moz-linear-gradient(left, $from 0%, $to $stop);
+
+  /* Safari 4+, Chrome 1+ */
+/*  background-image: -webkit-gradient(linear, left top, right top, color-stop($start, $from), color-stop($stop, $to));*/
+
+  /* Safari 5.1+, Chrome 10+ */
+/*  background-image: -webkit-linear-gradient(left, $from $start, $to $stop);*/
+
+  /* Opera 11.10+ */
+  background-image: -o-linear-gradient(left, $from $start, $to $stop);
+
+  /* IE10+ */
+  background: -ms-linear-gradient(left, $from $start, $to $stop);
+
+  /* Standard */
+  background: linear-gradient(to right, $from $start, $to $stop);
+
+}
+
+

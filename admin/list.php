@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	$list = $Data->get();
         $total = count($list);
 ?>
@@ -23,7 +23,7 @@
                 </form>
                 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
                 <?php if($_SESSION['login']['login'] == 'admin'){?>
-                <input type="button" value="Effacer tous les éléments de ce type" onclick="if(confirm('Etes vous sûr ?')) { window.open('admin.php?d=<?php echo $w;?>&delall','_self')}" class="bouton">
+                <input type="button" value="Effacer tous les éléments de ce type" onclick="if(confirm('Etes vous sÃ»r ?')) { window.open('admin.php?d=<?php echo $w;?>&delall','_self')}" class="bouton">
 				<?php }?>
                 </div>
 

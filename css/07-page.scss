@@ -1,0 +1,44 @@
+﻿@import "inc/base";
+.page IMG{
+	width:50%;
+}
+.page {
+	letter-spacing: 0.0em;
+	@include rwd("tablet-small") {
+		margin-left:17px;
+		float:left;
+		width:422px;
+	}
+}
+
+.page_line{
+	@include rwd("tablet-small") {
+		margin-left:17px;
+	}
+}
+.page_line .case P{
+	margin: 0;
+	font-size:14px;
+}
+.page_line .case{
+	overflow: hidden;
+	margin-bottom: 10px;
+	@include rwd("tablet-small") {
+		float:left;
+		width:50%;
+	}
+}
+.page_line .case IMG{
+	width: 98%;
+	margin:1%;
+	@include rwd("tablet-small") {
+		width: 98%;
+		margin-left: 2%;
+	}
+}
+
+hr{
+	border: 0;
+	height: 0;
+	clear:both;
+}

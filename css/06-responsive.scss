@@ -1,0 +1,17 @@
+﻿@import "inc/base";
+body:before{
+	background:pink;
+	position:fixed;
+	bottom:0;
+	right:0;
+	content:'init';
+	padding:4px;
+	z-index:9999999999999999999999999;
+}
+@each $i in $breakpoints{
+	@include rwd(nth($i,1)){
+		body:before{
+			content:nth($i,1)
+		}
+	}
+}
