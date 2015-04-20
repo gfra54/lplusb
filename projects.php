@@ -43,7 +43,7 @@ showHeader($Project->data['titre'],false,false,true);?>
 		$mode = mode_image($doc);
 	?>
 		<a style="height:<?php echo $GLOBALS['MIN_CELL_HEIGHT'];?>px;width:<?php echo round($GLOBALS['MIN_CELL_HEIGHT']*$mode['ratio']);?>px;" data-mode="<?php echo $mode['mode'];?>" data-ratio="<?php echo $mode['ratio'];?>" href="#i<?php echo $cpt;?>" class="toup cell project">
-		<span class="text"><span class="in"><b><?php echo $Project->data['titre'];?></b><p><?php echo $chapo;?></p></span></span>
+		<span class="text"><span class="in"><!--<b><?php echo $Project->data['titre'];?></b><p><?php echo $chapo;?></p>--></span></span>
 		<img src="<?php echo Url::image($doc,450);?>">
 		</a>
 

@@ -40,10 +40,10 @@ body {
 	position:relative;
 	margin:0 auto;
 	height: 140px;
-	margin-top:10px;
+	margin-top:16px;
 	margin-bottom:10px;
 	@include rwd("tablet-small") {
-		width: 500px;
+		margin-left: 50%;
 		font-size:12px;
 	}
 	letter-spacing: 0.0em;
@@ -173,8 +173,8 @@ body {
 	border-bottom:1px solid #3C3C3C; 
 }
 #slider #prev:hover:before{
-	border-left:4px solid #ccc; 
-	border-bottom:4px solid #ccc; 
+	border-left:2px solid #ccc; 
+	border-bottom:2px solid #ccc; 
 }
 #slider #next:before{
 	right:10%;
@@ -183,8 +183,8 @@ body {
 	border-top:1px solid #3C3C3C; 
 }
 #slider #next:hover:before{
-	border-right:4px solid #ccc; 
-	border-top:4px solid #ccc; 
+	border-right:2px solid #ccc; 
+	border-top:2px solid #ccc; 
 }
 #slider #prev{
 	left:0;

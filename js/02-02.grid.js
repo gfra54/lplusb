@@ -1,4 +1,4 @@
-﻿
+﻿/*
 $(document).ready(function() {
 	var _content_width = $('#content').width();
 	var _margin_cell = 15;
@@ -54,4 +54,4 @@ $(document).ready(function() {
 });
 $(window).load(function() {
 
-});
+});*/

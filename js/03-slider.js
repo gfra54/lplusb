@@ -24,7 +24,7 @@ $(document).ready(function() {
 				$('.legende-0').removeClass('legende-hidden');
 			}
 			$('#slider #zone #sliding').stop().animate({'margin-left':_ml},1000,function(){
-				$('#description .count').html($('#slider').attr('data-rang')+'/'+$('#slider .slide').length);
+			//	$('#description .count').html($('#slider').attr('data-rang')+'/'+$('#slider .slide').length);
 				$('#slider').attr('data-moving',0);
 				if(_opened) {
 					_opened=false;

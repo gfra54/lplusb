@@ -80,7 +80,7 @@
 	.ligne {
 		border-bottom:1px dotted #333;
 		margin-top: 10px;
-		margin-bottom: 20px;
+		margin-bottom: 40px;
 	}
 }
 @include rwd("desktop-small"){
@@ -95,7 +95,11 @@
 		}
 	}
 }
-
+@include rwd("desktop-small"){
+	#wrapper {
+		max-width: 1500px;
+	}
+}
 
 #logo_baseline, #logo, #presentation {
 	display:block;
@@ -107,7 +111,7 @@
 @include rwd("tablet-small"){
 	#logo_baseline {
 		IMG {
-			width:246px
+			width:260px
 		}
 	}
 }
