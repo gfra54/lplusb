@@ -47,6 +47,12 @@
 			opacity: 1;
 			background-color: rgba(0,0,0,0.8);
 		}
+	}
+	&.thumb:hover {
+		.text{
+			opacity: 1;
+			background-color: rgba(0,0,0,0.3);
+		}
 	}	
 	.text{
 		.in{

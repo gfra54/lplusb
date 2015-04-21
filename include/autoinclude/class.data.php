@@ -219,20 +219,24 @@ Class Data{
 			}
 //			$image_orders = explode('|',@file_get_contents($dir.'images_order.txt'));
 			$docs = array();
-			foreach($images as $entry =>$legend){
-				if(!empty($entry)) {
-					$docs[$entry]=$dir.($entry);
-				}
-			}
-			if($d = @dir($dir)) {
-				while (false !== ($entry = $d->read())) {
-					if(Image::isImage($entry)) {
-						$docs[$entry] = new File($dir.$entry,$images[$entry]);
+			if(is_array($images)) {
+				foreach($images as $entry =>$legend){
+					if(!empty($entry)) {
+						$docs[$entry]=$dir.($entry);
 					}
 				}
-				$d->close();
+				if($d = @dir($dir)) {
+					while (false !== ($entry = $d->read())) {
+						if(Image::isImage($entry)) {
+							$docs[$entry] = new File($dir.$entry,$images[$entry]);
+						}
+					}
+					$d->close();
+				}
+				$this->docs = $docs;
+			} else {
+				$this->docs = array();				
 			}
-			$this->docs = $docs;
 		}
 		return $this->docs;
 

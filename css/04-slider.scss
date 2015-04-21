@@ -39,9 +39,8 @@ body {
 	}
 	position:relative;
 	margin:0 auto;
-	height: 140px;
 	margin-top:16px;
-	margin-bottom:10px;
+	margin-bottom:70px;
 	@include rwd("tablet-small") {
 		margin-left: 50%;
 		font-size:12px;
@@ -90,12 +89,12 @@ body {
 	overflow: hidden;;
 	display: inline-block;
 	position:relative;
-    cursor:url(../../images/zoom.cur), -moz-zoom-in;
+//    cursor:url(../../images/zoom.cur), -moz-zoom-in;
     .image-legende {
     	display: none;
     }
     &.opened{
-		cursor: url(../../images/zoomout.cur), -moz-zoom-out;
+//		cursor: url(../../images/zoomout.cur), -moz-zoom-out;
     	position:fixed;
     	top:0;
     	left:0;

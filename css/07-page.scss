@@ -4,10 +4,14 @@
 }
 .page {
 	letter-spacing: 0.0em;
+	font-size: 20px;
+	line-height: 27px;
 	@include rwd("tablet-small") {
 		margin-left:17px;
 		float:left;
-		width:422px;
+	}
+	A {
+		color:#666;
 	}
 }
 

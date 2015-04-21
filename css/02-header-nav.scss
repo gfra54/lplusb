@@ -58,7 +58,8 @@
 	}
 	#header {
 		padding:0;
-		height:100px;
+		height: 96px;
+		padding-top: 4px;
 		IMG {
 			width:auto;
 		}
@@ -79,7 +80,7 @@
 	}
 	.ligne {
 		border-bottom:1px dotted #333;
-		margin-top: 10px;
+		margin-top: 26px;
 		margin-bottom: 40px;
 	}
 }

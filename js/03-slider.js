@@ -36,7 +36,7 @@ $(document).ready(function() {
 
 	},50)},1000);
 
-	$('#slider .slide').click(function(){
+/*	$('#slider .slide').click(function(){
 		_slide = $(this);
 		if(!_slide.hasClass('opened')) {
 			_hash = '#i'+$('#slider').attr('data-rang')+'-opened';
@@ -45,7 +45,7 @@ $(document).ready(function() {
 			toggleModeImage();
 		}
 		document.location.hash = _hash;
-	});
+	});*/
 
 	$('#slider').attr('data-rang',1).attr('data-moving',0);
 

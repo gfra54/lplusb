@@ -89,17 +89,22 @@ if(!$ajax) {
 			<div id="apropos">
 				<?php $menu = explode("\n",getSetting('menu'));
 				foreach($menu as $k=>$v){
-				if(strstr($v, ':')!==false){
-					list($w,$id) = explode(':',$v);
-					$Link = new Data($w,$id);
-					$lib = $Link->data['titre'];
-					$url = $Link->data['uri'];
-				} else {
-					list($lib,$url) = explode('=>',$v);
-				}
-				?>
-				<a href="<?php echo $url;?>" class="slidin"><?php echo $lib;?></a>
-				<?php }?>
+					$lib=$url=false;
+					if(strstr($v, ':')!==false){
+						list($w,$id) = explode(':',$v);
+						$Link = new Data($w,$id);
+						if($Link->pub) {
+							$lib = $Link->data['titre'];
+							$url = $Link->data['uri'];
+						}
+					} else {
+						list($lib,$url) = explode('=>',$v);
+					}
+					if($lib && $url){
+					?>
+					<a href="<?php echo $url;?>" class="slidin"><?php echo $lib;?></a>
+					<?php }
+					}?>
 			</div>
 		</div>
 

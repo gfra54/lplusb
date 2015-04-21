@@ -225,11 +225,12 @@ class MySQL {
 			$where = array($idname=>$where);
 		}
 		$r = $this->Select($from,$where);
-		if(list(,$ret) = each($r)){
-			return $ret;
-		} else {
-			return false;
+		if(is_array($r)) {
+			if(list(,$ret) = each($r)){
+				return $ret;
+			}
 		}
+		return false;
 	}
 
 	function Select($from, $where='', $orderBy='', $limit='', $like=false, $operand='AND',$cols='*'){
