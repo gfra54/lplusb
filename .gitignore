@@ -1,5 +1,7 @@
-.htaccess
+# test
+*.test
 IMG/
+.htaccess
 CACHE/
 bin/
 tmp/
