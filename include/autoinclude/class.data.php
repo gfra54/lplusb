@@ -217,6 +217,7 @@ Class Data{
 			} else {
 				$images = array();
 			}
+//			mpre($new_files);
 //			$image_orders = explode('|',@file_get_contents($dir.'images_order.txt'));
 			$docs = array();
 			if(is_array($images)) {
@@ -236,6 +237,12 @@ Class Data{
 				$this->docs = $docs;
 			} else {
 				$this->docs = array();				
+			}
+			foreach(glob($dir.'*.*') as $file) {
+				$F = new File($file);
+				if($F->is('image')) {
+					$this->docs[$F->base()]=$F;
+				}
 			}
 		}
 		return $this->docs;

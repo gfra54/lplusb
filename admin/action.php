@@ -1,4 +1,5 @@
 ﻿<?php
+
 $w = !empty($_GET['w']) && isset($GLOBALS['DESC'][$_GET['w']]) ? $_GET['w'] : false;
 $id = !empty($_GET['id']) ? $_GET['id'] : false;
 
@@ -64,7 +65,21 @@ if(isset($_POST['form'])) {
 		$id = $Object->save();
 
 		initDir($w,$id);
-        $dir = 'data/'.$w.'/'.$id.'/';
+        $dir = $GLOBALS['chemin_site'].'data/'.$w.'/'.$id.'/';
+		@mkdir($dir,0777,true);
+
+		if(!empty($_FILES)) {
+			for($i=0;$i<count($_FILES['files']['name']);$i++) {
+				$tmp_name = $_FILES['files']['tmp_name'][$i];
+				$name = $_FILES['files']['name'][$i];
+				$File = new File($name);
+				if($File->is('image')) {
+					$targetFile = $dir.$File->clean();
+					move_uploaded_file($tmp_name,$targetFile);
+				}
+			}
+		}
+
         if($form['files_to_delete']) {
                 $tab_delete = explode('|',$form['files_to_delete']);
                 foreach($tab_delete as $file) {

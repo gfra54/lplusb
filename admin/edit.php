@@ -51,7 +51,9 @@
 				<div>
 			<?php }?>
 
-					<input type="file" name="file_upload" id="file_upload" />
+					<!-- <input type="file" name="file_upload" id="file_upload" /> -->
+					<input id="fileupload" onchange="$('#form_upload').submit()" type="file" name="files[]" data-url="server/php/" multiple>
+				
 					</div>
 
 
@@ -109,4 +111,4 @@
         </div>
         </form>
 
-<script>initUploadify("<?php echo $w;?>","<?php echo $id;?>");</script>
+<!--<script>initUploadify("<?php echo $w;?>","<?php echo $id;?>");</script>-->

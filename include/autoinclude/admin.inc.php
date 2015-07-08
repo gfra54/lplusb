@@ -40,7 +40,7 @@ function showHeaderAdmin($titre=false,$extra=false) {
 <title><?php echo $titre ? $titre : 'Admin';?></title>
 <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/admin/admin.css"/>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/admin/admin.js"></script>
 <script type="text/javascript" src="js/admin/toolbar.js"></script>
 <script type="text/javascript" src="uploadify/jquery.uploadify.min.js"></script>

@@ -65,6 +65,10 @@ Class File{
 		return basename($this->f);
 	}
 
+	function base(){
+		return basename($this->f);
+	}
+
 	function path(){
 		return str_replace($GLOBALS['url_site'],'',$this->f);		
 	}
