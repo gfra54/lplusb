@@ -217,13 +217,13 @@ Class Data{
 			} else {
 				$images = array();
 			}
-//			mpre($new_files);
-//			$image_orders = explode('|',@file_get_contents($dir.'images_order.txt'));
 			$docs = array();
 			if(is_array($images)) {
 				foreach($images as $entry =>$legend){
 					if(!empty($entry)) {
-						$docs[$entry]=$dir.($entry);
+						if(file_exists($dir.($entry))) {
+							$docs[$entry]=$dir.($entry);
+						}
 					}
 				}
 				if($d = @dir($dir)) {

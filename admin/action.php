@@ -85,12 +85,11 @@ if(isset($_POST['form'])) {
                 foreach($tab_delete as $file) {
                         if(!empty($file)) {
                                 unlink($dir.$file);
-				
+								unset($form['images'][$file]);
                                 $form['images_order'] = str_replace($file.'|','',$form['images_order']);
                         }
                 }
         }
-
         file_put_contents($dir.'images.json',json_encode($form['images']));
         if(!empty($form['images_order'])) {
 	        file_put_contents($dir.'images_order.txt',$form['images_order']);
