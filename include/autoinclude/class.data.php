@@ -240,7 +240,7 @@ Class Data{
 			}
 			foreach(glob($dir.'*.*') as $file) {
 				$F = new File($file);
-				if($F->is('image')) {
+				if($F->is('image') && !isset($this->docs[$F->base()])) {
 					$this->docs[$F->base()]=$F;
 				}
 			}

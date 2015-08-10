@@ -8,7 +8,8 @@
 	@include rwd("tablet-small"){
 		float:left;
 		width:100%;
-	}
+    	margin-top: 5px;
+    }
 }
 
 .cell {
